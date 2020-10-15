@@ -1,0 +1,86 @@
+buildscript {
+    ext.kotlin_version = "1.4.10"
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.3.4'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    //app settings
+    version_code = 1
+    version_name = '1.0.0'
+    build_tool_version = '30.0.0'
+    compile_sdk_version = 30
+    minimum_sdk_version = 23
+    target_sdk_version = 30
+
+    //core
+    app_compact_version = '1.2.0'
+    ktx_version = '1.3.1'
+    multidex_version = '2.0.1'
+
+    //view
+    material_version = '1.2.1'
+    circle_image_view_version = '3.0.1'
+
+    //timber
+    timber_version = '4.7.1'
+
+    //retrofit okHttp GSON
+    retrofit_version = '2.9.0'
+    ok_http_version = '4.1.0'
+    gson_version = '2.8.6'
+
+    //dagger2
+    dagger_version = '2.27'
+
+    //rx-java
+    rx_java_version = '2.2.12'
+    rx_android_version = '2.1.1'
+
+    // life cycle
+    lifecycle_version = '2.2.0'
+    paging_version = "2.1.0"
+    nav_version = "2.1.0"
+
+    //dimension
+    sdp_android_version = '1.0.6'
+
+    //google map
+    google_map_version = '17.0.0'
+    google_map_location_version = '17.0.0'
+
+    //fire_base
+    firebase_core_version = '17.5.1'
+    cloud_messageing_version = '20.3.0'
+    analicts_version = '17.6.0'
+    crash_analysis_version = '2.10.1'
+
+    //picasso
+    picaso_version = '2.71828'
+
+    //image cropper
+    image_cropper_version = '2.8.0'
+
+    //test
+    junit_version = '4.12'
+    test_runner_version = '1.2.0'
+    epresso_version = '3.2.0'
+}
