@@ -72,6 +72,8 @@ ext {
     cloud_messageing_version = '20.3.0'
     analicts_version = '17.6.0'
     crash_analysis_version = '2.10.1'
+    firebase_ui_auth = '6.2.0'
+    firebase_auth = '19.2.0'
 
     //picasso
     picaso_version = '2.71828'

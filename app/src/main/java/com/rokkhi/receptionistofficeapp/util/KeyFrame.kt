@@ -2,6 +2,8 @@ package com.rokkhi.receptionistofficeapp.util
 
 object KeyFrame {
 
+
+     const val RC_SIGN_IN = 12773
     const val NOTIFICATION_SERVICE_ID: Int = 1011
     const val NOTIFICATION_SERVICE_MESSAGE_INTENT_KEY = "message"
 
@@ -10,12 +12,10 @@ object KeyFrame {
 
     const val USER_AUTH = "token"
     const val USER_ID = "user_id"
-    const val PASSWORD = "password"
     const val USER_NAME = "username"
     const val NAME = "name"
     const val LOGIN_STATUS = "login_status"
 
-    const val FIELD_REQUIRED = "Field required!"
     const val SOMETHING_WRONG = "Something went wrong!"
     const val TRY_AGAIN_LATER = "Try after some while!"
     const val LET_US_KNOW = "Please contact developer!"

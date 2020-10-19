@@ -97,7 +97,10 @@ dependencies {
     //fire-base
     implementation "com.google.firebase:firebase-core:$firebase_core_version"
     implementation "com.google.firebase:firebase-messaging:$cloud_messageing_version"
-    implementation "com.google.firebase:firebase-analytics:$analicts_version"
+    implementation platform('com.google.firebase:firebase-bom:25.12.0')
+    implementation "com.google.firebase:firebase-analytics"
+    implementation "com.firebaseui:firebase-ui-auth:$firebase_ui_auth"
+    implementation "com.google.firebase:firebase-auth:$firebase_auth"
 
     //picasso
     implementation "com.squareup.picasso:picasso:$picaso_version"

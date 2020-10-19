@@ -1,166 +1,82 @@
 {
   "project_info": {
-    "project_number": "637509831773",
-    "firebase_url": "https://notificationtest-6d1cc.firebaseio.com",
-    "project_id": "notificationtest-6d1cc",
-    "storage_bucket": "notificationtest-6d1cc.appspot.com"
+    "project_number": "1089693741005",
+    "firebase_url": "https://kolig-6649c.firebaseio.com",
+    "project_id": "kolig-6649c",
+    "storage_bucket": "kolig-6649c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:637509831773:android:aa8e43965de2cdbe6551b4",
+        "mobilesdk_app_id": "1:1089693741005:android:d626f394033f86ce115e84",
         "android_client_info": {
-          "package_name": "com.dexterous.flutterlocalnotificationsexample"
+          "package_name": "com.rokkhi.office"
         }
       },
       "oauth_client": [
         {
-          "client_id": "637509831773-ek0rn3lkd2656ejpk6ml40ngp62f4ls6.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAIGewEYf5Ttj7ny2ZtizxIEHiehAOZIH0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "637509831773-ek0rn3lkd2656ejpk6ml40ngp62f4ls6.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:637509831773:android:c794a193376cca456551b4",
-        "android_client_info": {
-          "package_name": "com.example.flutterappa.notification_with_method_chann"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "637509831773-ek0rn3lkd2656ejpk6ml40ngp62f4ls6.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAIGewEYf5Ttj7ny2ZtizxIEHiehAOZIH0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "637509831773-ek0rn3lkd2656ejpk6ml40ngp62f4ls6.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:637509831773:android:13fd59acee0695ae6551b4",
-        "android_client_info": {
-          "package_name": "com.example.flutterappnotificationtest"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "637509831773-ek0rn3lkd2656ejpk6ml40ngp62f4ls6.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAIGewEYf5Ttj7ny2ZtizxIEHiehAOZIH0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "637509831773-ek0rn3lkd2656ejpk6ml40ngp62f4ls6.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:637509831773:android:4cf7b7a20997d2896551b4",
-        "android_client_info": {
-          "package_name": "com.example.notificationtest"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "637509831773-4hrlf7j0pmud0jmsfkilapu75ho4peno.apps.googleusercontent.com",
+          "client_id": "1089693741005-nmbo84ujbfnq69vjrrpfut6fugpi4f2h.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.notificationtest",
-            "certificate_hash": "ee857f8dbd8df59232b4c94ecd674471482dcc89"
+            "package_name": "com.rokkhi.office",
+            "certificate_hash": "62a255e527b5d3626923c420b0079049650da76b"
           }
         },
         {
-          "client_id": "637509831773-ek0rn3lkd2656ejpk6ml40ngp62f4ls6.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAIGewEYf5Ttj7ny2ZtizxIEHiehAOZIH0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "637509831773-ek0rn3lkd2656ejpk6ml40ngp62f4ls6.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:637509831773:android:ff54cde57677dc2b6551b4",
-        "android_client_info": {
-          "package_name": "com.example.platformchannel"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "637509831773-aeosopmtv4a4avju7kntop2na3mmvgg4.apps.googleusercontent.com",
+          "client_id": "1089693741005-dfva2e0akhoscrvacmoiehhp6pppi1d4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.platformchannel",
-            "certificate_hash": "ee857f8dbd8df59232b4c94ecd674471482dcc89"
+            "package_name": "com.rokkhi.office",
+            "certificate_hash": "c9f676d663792f94603844023aa889963af6a2b6"
           }
         },
         {
-          "client_id": "637509831773-ek0rn3lkd2656ejpk6ml40ngp62f4ls6.apps.googleusercontent.com",
+          "client_id": "1089693741005-c67kej29ok8e2a7a9llro5i82p0r5t7f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rokkhi.office",
+            "certificate_hash": "7fabc97650594febc705bdd7fbdbdef64d1db927"
+          }
+        },
+        {
+          "client_id": "1089693741005-6lriipe38l4c9vpcuirss40ht3h4h2dr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rokkhi.office",
+            "certificate_hash": "551d128512c3dbbc499a1a885e8c97503cd3ce48"
+          }
+        },
+        {
+          "client_id": "1089693741005-osjaoqsn5l8anc0c09jfsu2ku996t5b1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rokkhi.office",
+            "certificate_hash": "3b8a2b7ceb2b732949ca9fe73bb1c1942eb8e20c"
+          }
+        },
+        {
+          "client_id": "1089693741005-54vvnlegds9ilkkvvc6j9h9ebrrufbbj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rokkhi.office",
+            "certificate_hash": "3b26878bdad71bc67c619029cd14fdde0d0647e3"
+          }
+        },
+        {
+          "client_id": "1089693741005-usrejg44km8co34t8jesv8dsdvtckb63.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAIGewEYf5Ttj7ny2ZtizxIEHiehAOZIH0"
+          "current_key": "AIzaSyA5ZIrVx3oxrBzBQW3VIIo9u1z63hhyHkg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "637509831773-ek0rn3lkd2656ejpk6ml40ngp62f4ls6.apps.googleusercontent.com",
+              "client_id": "1089693741005-usrejg44km8co34t8jesv8dsdvtckb63.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -169,27 +85,72 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:637509831773:android:86264bca651611556551b4",
+        "mobilesdk_app_id": "1:1089693741005:android:57340bd3d9934100115e84",
         "android_client_info": {
           "package_name": "com.rokkhi.receptionistofficeapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "637509831773-ek0rn3lkd2656ejpk6ml40ngp62f4ls6.apps.googleusercontent.com",
+          "client_id": "1089693741005-1jfaomrfg9v47i9ot5rllo3ak91jom9b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rokkhi.receptionistofficeapp",
+            "certificate_hash": "ee857f8dbd8df59232b4c94ecd674471482dcc89"
+          }
+        },
+        {
+          "client_id": "1089693741005-usrejg44km8co34t8jesv8dsdvtckb63.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAIGewEYf5Ttj7ny2ZtizxIEHiehAOZIH0"
+          "current_key": "AIzaSyA5ZIrVx3oxrBzBQW3VIIo9u1z63hhyHkg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "637509831773-ek0rn3lkd2656ejpk6ml40ngp62f4ls6.apps.googleusercontent.com",
+              "client_id": "1089693741005-usrejg44km8co34t8jesv8dsdvtckb63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089693741005:android:53c6654f80baeabe115e84",
+        "android_client_info": {
+          "package_name": "com.rokkhi.rokkhikolig"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1089693741005-iqc1d1rvl7epi081t38799lkjvl5k9li.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rokkhi.rokkhikolig",
+            "certificate_hash": "713237a42fe02906965ead542c9fbeaaeffc5379"
+          }
+        },
+        {
+          "client_id": "1089693741005-usrejg44km8co34t8jesv8dsdvtckb63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5ZIrVx3oxrBzBQW3VIIo9u1z63hhyHkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1089693741005-usrejg44km8co34t8jesv8dsdvtckb63.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

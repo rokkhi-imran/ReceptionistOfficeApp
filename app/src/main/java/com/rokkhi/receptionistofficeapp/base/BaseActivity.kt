@@ -14,6 +14,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.rokkhi.receptionistofficeapp.di.ActivityScope
 import com.rokkhi.receptionistofficeapp.helper.SharedPrefHelper
 import dagger.android.AndroidInjection
@@ -33,11 +35,16 @@ abstract class BaseActivity<D : ViewDataBinding> : AppCompatActivity() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     var activityContext: Activity? = null
 
+
+     lateinit var mAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         activityContext = this
         dataBinding = DataBindingUtil.setContentView(this, layoutRes())
+
+        mAuth = FirebaseAuth.getInstance()
 
     }
 
