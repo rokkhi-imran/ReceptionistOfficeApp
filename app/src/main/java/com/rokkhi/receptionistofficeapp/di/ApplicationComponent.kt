@@ -6,9 +6,9 @@ import com.rokkhi.receptionistofficeapp.network.module.RokkhiApiModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
-import live.qtec.survey.di_editable.ActivityModule
+import com.rokkhi.receptionistofficeapp.di_editable.ActivityModule
 import live.qtec.survey.di_editable.FragmentModule
-import live.qtec.survey.di_editable.ViewModelModule
+import com.rokkhi.receptionistofficeapp.di_editable.ViewModelModule
 import javax.inject.Singleton
 
 @Singleton

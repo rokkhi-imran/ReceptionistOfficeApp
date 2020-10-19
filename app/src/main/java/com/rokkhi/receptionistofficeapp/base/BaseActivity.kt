@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -49,6 +50,9 @@ abstract class BaseActivity<D : ViewDataBinding> : AppCompatActivity() {
 
     protected fun showMessage(message: String?) {
         Snackbar.make(findViewById(android.R.id.content), "" + message, Snackbar.LENGTH_LONG).show()
+    }
+    protected fun showToast(message: String?) {
+        Toast.makeText(this,""+message,Toast.LENGTH_SHORT).show();
     }
 
     protected fun showProgressBar(isLoading: Boolean, view: View) {

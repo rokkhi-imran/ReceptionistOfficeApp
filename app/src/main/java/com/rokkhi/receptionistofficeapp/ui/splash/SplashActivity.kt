@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.rokkhi.receptionistofficeapp.R
 import com.rokkhi.receptionistofficeapp.base.BaseActivity
 import com.rokkhi.receptionistofficeapp.databinding.SplashActivityBinding
+import com.rokkhi.receptionistofficeapp.util.ScreenNavigator
 
 @SuppressLint("SetTextI18n")
 class SplashActivity : BaseActivity<SplashActivityBinding>() {
@@ -16,6 +17,8 @@ class SplashActivity : BaseActivity<SplashActivityBinding>() {
         super.onCreate(savedInstanceState)
         dataBinding.lifecycleOwner = this
         viewModel = ViewModelProvider(this, viewModelFactory).get(SplashViewModel::class.java)
+
+        ScreenNavigator.navigateMainActivity(activityContext)
 
 
     }
