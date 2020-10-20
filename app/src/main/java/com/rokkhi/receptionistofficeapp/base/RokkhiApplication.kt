@@ -1,10 +1,7 @@
 package com.rokkhi.receptionistofficeapp.base
 
 import android.app.Application
-import android.util.Log
-import androidx.databinding.library.BuildConfig
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuth.AuthStateListener
+import com.rokkhi.receptionistofficeapp.BuildConfig
 import com.rokkhi.receptionistofficeapp.di.DaggerApplicationComponent
 import com.rokkhi.receptionistofficeapp.helper.FontsOverride
 import com.rokkhi.receptionistofficeapp.helper.SharedPrefHelper
@@ -25,12 +22,8 @@ class RokkhiApplication : Application(), HasAndroidInjector {
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
-//        createNotificationServiceChannel()
         FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/OpenSans-Regular.ttf")
         DaggerApplicationComponent.builder().application(this).build().inject(this)
-
-
-
     }
 
 
