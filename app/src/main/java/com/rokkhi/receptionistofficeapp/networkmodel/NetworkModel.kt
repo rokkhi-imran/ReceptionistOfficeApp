@@ -10,7 +10,7 @@ import java.io.Serializable
 data class LoginResponse(val active_status: String, val msg: String, @SerializedName("surveyor_id ") val surveyor_id: Int, val token: String) : Serializable
 
 // user response
-data class UserResponse(val `data`: Data, val errorCode: Int, val errors: String, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String): Serializable
+data class UserResponse(val `data`: Data, val errorCode: Int, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String): Serializable
 data class Data(val address: String, val age: Int, val branch: Any, val company: Company, val contactPersonName: String, val contactPersonPhone: String, val createdDate: String, val deletedDate: Any, val department: Any, val email: String, val firebaseId: String, val gender: String, val id: Int, val image: String, val isActive: Boolean, val name: String, val nid: String, val password: String, val phone: String, val primaryRoleCode: String, val thumbImage: String, val updatedDate: String): Serializable
 data class Company(val address: String, val contactInfo: String, val contactPerson: String, val createdDate: String, val deletedDate: Any, val email: String, val firebaseId: String, val id: Int, val isActive: Boolean, val latitude: Any, val longitude: Any, val name: String, val password: String, val type: String, val updatedDate: String): Serializable
 

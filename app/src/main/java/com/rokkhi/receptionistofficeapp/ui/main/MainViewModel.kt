@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.rokkhi.receptionistofficeapp.helper.SharedPrefHelper
+import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.UserResponse
 import com.rokkhi.receptionistofficeapp.util.KeyFrame
-import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -27,6 +27,7 @@ class MainViewModel @Inject constructor(private var repo: MainRepo, private val 
 
     override fun onCleared() {
         super.onCleared()
+        repo.onClear()
     }
 
 }
