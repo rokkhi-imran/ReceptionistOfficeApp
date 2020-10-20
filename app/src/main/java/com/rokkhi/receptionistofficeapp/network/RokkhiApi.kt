@@ -1,12 +1,16 @@
-package live.qtec.survey.network
+package com.rokkhi.receptionistofficeapp.network
 
-import com.google.gson.JsonElement
+import com.rokkhi.receptionistofficeapp.networkmodel.UserResponse
 import io.reactivex.Single
-import okhttp3.MultipartBody
-import retrofit2.Call
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.POST
 
 interface RokkhiApi {
+
+    @POST("/api/v1/user/getByPhoneNumber")
+    fun getUserByPhone(@Body data: Map<String, String>): Single<UserResponse>
+
+
 /*
 
     @POST("/token/")

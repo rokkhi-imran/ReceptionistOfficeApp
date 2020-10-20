@@ -1,13 +1,13 @@
-package live.qtec.survey.network.wrapper
+package com.rokkhi.receptionistofficeapp.network.wrapper
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.rokkhi.receptionistofficeapp.network.errorhandler.NetworkError
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
-import com.rokkhi.receptionistofficeapp.network.errorhandler.NetworkError
 import timber.log.Timber
 
 abstract class NetworkBoundResource<ResultType>{
