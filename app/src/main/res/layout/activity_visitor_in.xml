@@ -96,11 +96,43 @@
                 </RelativeLayout>
 
 
+
+                <!-- username section -->
+                <LinearLayout
+                    android:id="@+id/relname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/prorel"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:background="@drawable/grey_border_bottom"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/userNameTextField"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint=" নাম">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/user_nameET"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_52sdp"
+                            android:inputType="textNoSuggestions"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="1dp"
+                            android:textSize="24sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/relphone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/prorel"
+                    android:layout_below="@+id/relname"
                     android:layout_marginTop="@dimen/_18sdp"
                     android:background="@drawable/grey_border_bottom"
                     android:orientation="vertical">
@@ -134,74 +166,12 @@
                 </LinearLayout>
 
 
-                <!-- username section -->
-                <LinearLayout
-                    android:id="@+id/relname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/relphone"
-                    android:layout_marginTop="@dimen/_18sdp"
-                    android:background="@drawable/grey_border_bottom"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/userNameTextField"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint=" নাম">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/user_nameET"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_52sdp"
-                            android:inputType="textNoSuggestions"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="1dp"
-                            android:textSize="24sp" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/whomtomeet"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/relname"
-                    android:layout_marginTop="@dimen/_18sdp"
-                    android:background="@drawable/grey_border_bottom"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/flatNumberETTextField"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint=" কোন ফ্লাটে যাবে">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/flatNumberET"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_52sdp"
-                            android:focusable="false"
-                            android:inputType="textNoSuggestions"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="1dp"
-                            android:textSize="24sp" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                </LinearLayout>
-
 
                 <LinearLayout
                     android:id="@+id/relpurpose"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/whomtomeet"
+                    android:layout_below="@+id/relphone"
                     android:layout_marginTop="@dimen/_18sdp"
                     android:background="@drawable/grey_border_bottom"
                     android:orientation="vertical">

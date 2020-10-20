@@ -21,39 +21,32 @@ object ScreenNavigator {
 
 
     fun navigateMainActivity(activity: Activity?) {
-        activity?.startActivity(Intent(activity, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
-        activity?.finish()
+        activity?.startActivity(Intent(activity, MainActivity::class.java))
     }
 
 
     fun navigateVisitorInActivity(activity: Activity?) {
-        activity?.startActivity(Intent(activity, VisitorInActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
-        activity?.finish()
+        activity?.startActivity(Intent(activity, VisitorInActivity::class.java))
     }
 
     fun navigateVisitorListActivity(activity: Activity?) {
-        activity?.startActivity(Intent(activity, VisitorListActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
-        activity?.finish()
+        activity?.startActivity(Intent(activity, VisitorListActivity::class.java))
     }
     fun navigateAttendanceInActivity(activity: Activity?) {
-        activity?.startActivity(Intent(activity, AttendanceInActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
-        activity?.finish()
+        activity?.startActivity(Intent(activity, AttendanceInActivity::class.java))
     }
 
 
     fun navigateAttendanceOutActivity(activity: Activity?) {
-        activity?.startActivity(Intent(activity, AttendanceOutActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
-        activity?.finish()
+        activity?.startActivity(Intent(activity, AttendanceOutActivity::class.java))
     }
 
     fun navigateParcelReceivedActivity(activity: Activity?) {
-        activity?.startActivity(Intent(activity, ParcelReceivedActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
-        activity?.finish()
+        activity?.startActivity(Intent(activity, ParcelReceivedActivity::class.java))
     }
 
     fun navigateParcelDeliveredActivity(activity: Activity?) {
-        activity?.startActivity(Intent(activity, ParcelDelieveredActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
-        activity?.finish()
+        activity?.startActivity(Intent(activity, ParcelDelieveredActivity::class.java))
     }
 
 

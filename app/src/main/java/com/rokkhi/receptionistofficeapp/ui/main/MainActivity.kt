@@ -18,7 +18,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
         dataBinding.attendanceInCardView.setOnClickListener {
-//            ScreenNavigator.navigateVisitorInActivity(activityContext)
+//            ScreenNavigator.navigateAttendanceInActivity(activityContext)
             viewModel.getUserByPhone("string").observe(this, Observer { apiResponse -> // todo: remove this line
 //            viewModel.getUserByPhone(mAuth.currentUser!!.phoneNumber.toString()).observe(this, Observer { apiResponse ->
                 when (apiResponse) {

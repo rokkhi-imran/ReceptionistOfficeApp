@@ -109,6 +109,10 @@ dependencies {
     //circle image view
     implementation "de.hdodenhof:circleimageview:$circle_image_view_version"
 
+    //image Picker
+    implementation 'com.github.jrvansuita:PickImage:2.2.4'
+
+
     //android test
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test:runner:$test_runner_version"
