@@ -21,7 +21,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
 
 
-        dataBinding.attendanceInCardView.setOnClickListener{ ScreenNavigator.navigateVisitorInActivity(activityContext)}
+        dataBinding.attendanceInCardView.setOnClickListener{ ScreenNavigator.navigateAttendanceInActivity(activityContext)}
         dataBinding.attendanceOutCardView.setOnClickListener { ScreenNavigator.navigateAttendanceOutActivity(activityContext) };
         dataBinding.visitorInCardView.setOnClickListener {  ScreenNavigator.navigateVisitorInActivity(activityContext)};
         dataBinding.visitorOutCardView.setOnClickListener{ScreenNavigator.navigateVisitorListActivity(activityContext)};

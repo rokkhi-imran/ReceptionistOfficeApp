@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.rokkhi.receptionistofficeapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,6 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Receptionistofficeapp">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.com.vansuita.pickimage.provider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/picker_provider_paths" />
+        </provider>
+
+
         <activity android:name=".ui.attendance_out.AttendanceOutActivity"></activity>
         <activity android:name=".ui.parcel_delivery.ParcelDelieveredActivity" />
         <activity android:name=".ui.parcel_received.ParcelReceivedActivity" />
