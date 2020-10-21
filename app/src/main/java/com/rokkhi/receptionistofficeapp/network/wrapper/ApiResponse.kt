@@ -1,4 +1,4 @@
-package live.qtec.survey.network.wrapper
+package com.rokkhi.receptionistofficeapp.network.wrapper
 
 sealed class ApiResponse<T>{
 

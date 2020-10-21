@@ -15,6 +15,8 @@ class OkHttpModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(loggerInterceptor: HttpLoggingInterceptor, helper: SharedPrefHelper): OkHttpClient {
+        val header = helper.getString(KeyFrame.USER_AUTH)
+        Timber.e("header data $header")
         val timeOut = 60
         val httpClient = OkHttpClient().newBuilder()
             .connectTimeout(timeOut.toLong(), TimeUnit.SECONDS)
@@ -26,7 +28,7 @@ class OkHttpModule {
             val original = chain.request()
             val requestBuilder = original.newBuilder()
                 .addHeader("Accept", "application/json")
-                .addHeader("Authorization", helper.getString(KeyFrame.USER_AUTH)) //TODO aws auth token here
+                .addHeader("authtoken", header)
             val request = requestBuilder.build()
             chain.proceed(request)
         }

@@ -15,9 +15,9 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.rokkhi.receptionistofficeapp.di.ActivityScope
 import com.rokkhi.receptionistofficeapp.helper.SharedPrefHelper
+import com.rokkhi.receptionistofficeapp.util.KeyFrame
 import dagger.android.AndroidInjection
 import timber.log.Timber
 import javax.inject.Inject
@@ -34,9 +34,19 @@ abstract class BaseActivity<D : ViewDataBinding> : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     var activityContext: Activity? = null
+    lateinit var mAuth: FirebaseAuth
 
 
-     lateinit var mAuth: FirebaseAuth
+    override fun onStart() {
+        super.onStart()
+        if (mAuth.currentUser != null) {
+            mAuth.currentUser!!.getIdToken(true).addOnSuccessListener {
+                val token = it.token
+                if (it.token != null) sharedPrefHelper.putString(KeyFrame.USER_AUTH, it.token!!)
+                Timber.e("token: ${sharedPrefHelper.getString(KeyFrame.USER_AUTH)}")
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
