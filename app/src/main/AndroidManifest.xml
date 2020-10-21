@@ -5,7 +5,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <!-- remove    android:usesCleartextTraffic="true"    line while we get https api -->
     <application
         android:name=".base.RokkhiApplication"
         android:allowBackup="false"
@@ -13,9 +12,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
-        tools:ignore="AllowBackup"
+        android:theme="@style/Theme.Receptionistofficeapp"
         android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.Receptionistofficeapp">
+        tools:ignore="AllowBackup">
+        <activity android:name=".ui.profile.EditProfileActivity"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -28,18 +28,17 @@
                 android:resource="@xml/picker_provider_paths" />
         </provider>
 
-
-        <activity android:name=".ui.attendance_out.AttendanceOutActivity"/>
+        <activity android:name=".ui.attendance_out.AttendanceOutActivity" />
         <activity android:name=".ui.parcel_delivery.ParcelDelieveredActivity" />
         <activity android:name=".ui.parcel_received.ParcelReceivedActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.visitor_out.VisitorListActivity" />
         <activity android:name=".ui.visitor_in.VisitorInActivity" />
         <activity android:name=".ui.attendance_in.AttendanceInActivity" />
-
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

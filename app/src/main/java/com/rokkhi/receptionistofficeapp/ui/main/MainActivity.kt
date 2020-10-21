@@ -14,7 +14,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dataBinding.lifecycleOwner = this;
+        dataBinding.lifecycleOwner = this
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
         dataBinding.attendanceInCardView.setOnClickListener {
@@ -29,11 +29,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             })
         }
 
-        dataBinding.attendanceOutCardView.setOnClickListener { ScreenNavigator.navigateAttendanceOutActivity(activityContext) };
-        dataBinding.visitorInCardView.setOnClickListener { ScreenNavigator.navigateVisitorInActivity(activityContext) };
-        dataBinding.visitorOutCardView.setOnClickListener { ScreenNavigator.navigateVisitorListActivity(activityContext) };
-        dataBinding.parcelReceivedCardView.setOnClickListener { ScreenNavigator.navigateParcelReceivedActivity(activityContext) };
-        dataBinding.parcelDeliveryCardView.setOnClickListener { ScreenNavigator.navigateParcelDeliveredActivity(activityContext) };
+        dataBinding.attendanceOutCardView.setOnClickListener { ScreenNavigator.navigateAttendanceOutActivity(activityContext) }
+//        dataBinding.attendanceOutCardView.setOnClickListener { ScreenNavigator.navigateEditProfileActivity(activityContext) }
+        dataBinding.visitorInCardView.setOnClickListener { ScreenNavigator.navigateVisitorInActivity(activityContext) }
+        dataBinding.visitorOutCardView.setOnClickListener { ScreenNavigator.navigateVisitorListActivity(activityContext) }
+        dataBinding.parcelReceivedCardView.setOnClickListener { ScreenNavigator.navigateParcelReceivedActivity(activityContext) }
+        dataBinding.parcelDeliveryCardView.setOnClickListener { ScreenNavigator.navigateParcelDeliveredActivity(activityContext) }
 
     }
 

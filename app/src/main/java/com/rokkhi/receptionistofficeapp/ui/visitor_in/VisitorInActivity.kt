@@ -20,7 +20,7 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-       dataBinding.lifecycleOwner=this;
+       dataBinding.lifecycleOwner=this
 
         viewModel= ViewModelProvider(this, viewModelFactory).get(VisitorInViewModel::class.java)
 
@@ -28,6 +28,28 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult{
 
         dataBinding.imageUploadTV.setOnClickListener { StaticFunction.selectImage(this) }
 
+        dataBinding.SubmitUserInfoBtn.setOnClickListener { checkInputValidation() }
+
+
+    }
+
+    private fun checkInputValidation() {
+        if (!StaticFunction.checkValidation(dataBinding.userNameET, dataBinding.userNameET.text, " ভিজিটর নাম ? ")) {
+            return
+        }
+
+        if (!StaticFunction.checkValidation(dataBinding.phoneNoET, dataBinding.phoneNoET.text, "ফোন নম্বার দিন !")) {
+            return
+        }
+
+        if (!StaticFunction.checkValidation(dataBinding.puposeET, dataBinding.puposeET.text, " কি উদ্দ্যেশে এসেছে ? ")) {
+            return
+        }
+
+        if (!StaticFunction.checkValidation(dataBinding.addressET, dataBinding.addressET.text, "ঠিকানা ইনপুট দিন ! ")) {
+            return
+        }
+        showToast("Validation Done")
 
 
     }

@@ -122,7 +122,7 @@
                         android:hint=" পার্সেল নাম">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/user_nameET"
+                            android:id="@+id/parcel_nameET"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_52sdp"
                             android:inputType="textNoSuggestions"
@@ -157,7 +157,7 @@
                             android:hint=" কম্পানি নাম ">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/phone_noET"
+                                android:id="@+id/parcelCompanyET"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_52sdp"
                                 android:inputType="numberDecimal"
@@ -188,10 +188,10 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="পার্সেল টাইপ">
+                        android:hint="কার নিকট যাবে">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/puposeET"
+                            android:id="@+id/whereParcelCame"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_52sdp"
                             android:paddingStart="10dp"
