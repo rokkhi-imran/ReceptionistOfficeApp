@@ -30,6 +30,27 @@ class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickRes
         dataBinding.userPhotoIV.setOnClickListener { StaticFunction.selectImage(this) }
         dataBinding.imageUploadTV.setOnClickListener { StaticFunction.selectImage(this) }
 
+        dataBinding.SubmitUserInfoBtn.setOnClickListener { checkInputValidation() }
+
+
+
+    }
+
+    private fun checkInputValidation() {
+
+        if (!StaticFunction.checkValidation(dataBinding.parcelNameET, dataBinding.parcelNameET.text, "পার্সেল নাম ? ")) {
+            return
+        }
+
+        if (!StaticFunction.checkValidation(dataBinding.parcelCompanyET, dataBinding.parcelCompanyET.text, "কৈ থেকে এসেছে ")) {
+            return
+        }
+        if (!StaticFunction.checkValidation(dataBinding.whereParcelCame, dataBinding.whereParcelCame.text, "কার কাছে এসেছে ? ")) {
+            return
+        }
+
+        showToast("Parcel Done")
+
     }
 
     override fun layoutRes(): Int = R.layout.activity_parcel_in

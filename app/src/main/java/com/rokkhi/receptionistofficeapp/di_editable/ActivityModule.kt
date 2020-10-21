@@ -6,6 +6,7 @@ import com.rokkhi.receptionistofficeapp.ui.attendance_out.AttendanceOutActivity
 import com.rokkhi.receptionistofficeapp.ui.main.MainActivity
 import com.rokkhi.receptionistofficeapp.ui.parcel_delivery.ParcelDelieveredActivity
 import com.rokkhi.receptionistofficeapp.ui.parcel_received.ParcelReceivedActivity
+import com.rokkhi.receptionistofficeapp.ui.profile.EditProfileActivity
 import com.rokkhi.receptionistofficeapp.ui.splash.SplashActivity
 import com.rokkhi.receptionistofficeapp.ui.visitor_in.VisitorInActivity
 import com.rokkhi.receptionistofficeapp.ui.visitor_out.VisitorListActivity
@@ -47,6 +48,10 @@ abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector
     abstract fun contributeParcelReceivedActivity(): ParcelReceivedActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector
+    abstract fun contributeEditProfileActivity(): EditProfileActivity
 
 
 
