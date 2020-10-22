@@ -16,11 +16,13 @@ class MainRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
 
     private val disposable = CompositeDisposable()
 
-    fun getUserByPhone(phoneNumber: String): LiveData<ApiResponse<UserResponse>> {
+    fun getUserDetails(deviceToken: String, deviceName: String): LiveData<ApiResponse<UserResponse>> {
         val map = HashMap<String, String>()
-        map["phoneNumber"] = phoneNumber
+        map["deviceToken"] = deviceToken
+        map["deviceType"] = deviceName
+
         return object : NetworkBoundResource<UserResponse>() {
-            override fun createCall(): Single<UserResponse> = api.getUserByPhone(map)
+            override fun createCall(): Single<UserResponse> = api.getUserDetails(map)
             override fun createDisposable(): CompositeDisposable = disposable
         }.asLiveData()
     }

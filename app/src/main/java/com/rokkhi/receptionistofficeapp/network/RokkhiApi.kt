@@ -7,9 +7,12 @@ import retrofit2.http.POST
 
 interface RokkhiApi {
 
-    //user - get user by phone number
-    @POST("/api/v1/user/getByPhoneNumber")
-    fun getUserByPhone(@Body data: Map<String, String>): Single<UserResponse>
+    //user - get user by auth
+    @POST("/api/v1/user/getUserDetails")
+    fun getUserDetails(@Body data: Map<String, String>): Single<UserResponse>
+
+    @POST("/api/v1/user/register")
+    fun postUserDetails(@Body data: Map<String, String>): Single<UserResponse>
 
     //entrance - addVisitor
     @POST("/api/v1/entrance/addVisitor")

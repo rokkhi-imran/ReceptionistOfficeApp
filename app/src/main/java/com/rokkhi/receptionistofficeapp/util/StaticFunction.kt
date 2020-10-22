@@ -1,10 +1,12 @@
 package com.rokkhi.receptionistofficeapp.util
 
+import android.app.Activity
 import android.graphics.Color
 import android.text.Editable
 import android.util.Log
 import android.util.Patterns
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.rokkhi.receptionistofficeapp.R
@@ -74,6 +76,14 @@ object StaticFunction {
         }else{
             true
         }
+
+    }
+
+
+    fun accessPermission(code: String): Boolean = code==KeyFrame.RECEPTION_ROLE_CODE
+    fun accessPermissionFailed(activityContext: Activity?) {
+
+        Toast.makeText(activityContext,"access permission not Found ",Toast.LENGTH_SHORT).show()
 
     }
 

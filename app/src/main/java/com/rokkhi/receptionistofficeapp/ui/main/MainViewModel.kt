@@ -15,7 +15,8 @@ class MainViewModel @Inject constructor(private var repo: MainRepo, private val 
     // *******
     // note: apis can be called directly like below
     // *******
-    fun getUserByPhone(userPhoneNumber: String): LiveData<ApiResponse<UserResponse>> = repo.getUserByPhone(userPhoneNumber)
+
+    fun getUserDetails(deviceToken: String, deviceName: String): LiveData<ApiResponse<UserResponse>> = repo.getUserDetails(deviceToken,deviceName)
 
 
     // *******

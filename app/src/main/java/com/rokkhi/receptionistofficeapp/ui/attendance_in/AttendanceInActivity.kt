@@ -1,6 +1,5 @@
 package com.rokkhi.receptionistofficeapp.ui.attendance_in
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.rokkhi.receptionistofficeapp.R
@@ -15,6 +14,8 @@ class AttendanceInActivity : BaseActivity<ActivityAttendanceBinding>() {
 
         dataBinding.lifecycleOwner=this
         viewModel=ViewModelProvider(this,viewModelFactory).get(AttendanceInViewModel::class.java)
+
+
 
 
     }

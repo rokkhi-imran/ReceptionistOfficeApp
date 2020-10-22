@@ -38,8 +38,6 @@ class SplashActivity : BaseActivity<SplashActivityBinding>() {
 
         mAuthListener = AuthStateListener { firebaseAuth ->
 
-
-
             if (firebaseAuth.currentUser == null) {
                 gosignpage()
             } else {

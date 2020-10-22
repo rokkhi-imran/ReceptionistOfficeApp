@@ -17,7 +17,7 @@ class RokkhiApplication : Application(), HasAndroidInjector {
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
     @Inject
-    lateinit var helper: SharedPrefHelper
+    lateinit var sharedPrefHelper: SharedPrefHelper
 
     override fun onCreate() {
         super.onCreate()

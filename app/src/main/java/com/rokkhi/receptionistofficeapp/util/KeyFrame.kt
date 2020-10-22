@@ -11,6 +11,7 @@ object KeyFrame {
     const val CUSTOM_BOLD_FONT = "fonts/OpenSans-Bold.ttf"
 
     const val USER_AUTH = "token"
+    const val DEVICE_TOKEN = "device_token"
     const val USER_ID = "user_id"
     const val USER_NAME = "username"
     const val NAME = "name"
@@ -22,6 +23,10 @@ object KeyFrame {
     const val UPDATE_PROFILE = "Please update your profile first!"
     const val DATE_TIME_PATTERN = "dd/MM/yyyy hh:mm:ss aa"
     const val DATE_TIME_PATTERN_2 = "dd/MM/yyyy hh:mm aa"
+
+    //User Role Code
+    const val RECEPTION_ROLE_CODE = "1001"
+    const val USER_ROLE_CODE = "1000"
 
 
 

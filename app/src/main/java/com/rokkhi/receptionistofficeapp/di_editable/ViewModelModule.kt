@@ -9,7 +9,6 @@ import com.rokkhi.receptionistofficeapp.ui.attendance_out.AttendanceOutViewModel
 import com.rokkhi.receptionistofficeapp.ui.main.MainViewModel
 import com.rokkhi.receptionistofficeapp.ui.parcel_delivery.ParcelDeliveryViewModel
 import com.rokkhi.receptionistofficeapp.ui.parcel_received.ParcelReceivedViewModel
-import com.rokkhi.receptionistofficeapp.ui.profile.EditProfileViewModel
 import com.rokkhi.receptionistofficeapp.ui.splash.SplashViewModel
 import com.rokkhi.receptionistofficeapp.ui.visitor_in.VisitorInViewModel
 import com.rokkhi.receptionistofficeapp.ui.visitor_out.VisitorListViewModel
@@ -58,11 +57,6 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ParcelReceivedViewModel::class)
     abstract fun bindParcelReceivedViewModel(viewModel: ParcelReceivedViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(EditProfileViewModel::class)
-    abstract fun bindEditProfileViewModel(viewModel: EditProfileViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: AppViewModelFactory): ViewModelProvider.Factory

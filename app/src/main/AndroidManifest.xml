@@ -15,7 +15,6 @@
         android:theme="@style/Theme.Receptionistofficeapp"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.profile.EditProfileActivity"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
