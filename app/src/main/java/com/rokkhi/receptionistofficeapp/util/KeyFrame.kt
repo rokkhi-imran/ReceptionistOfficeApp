@@ -2,6 +2,8 @@ package com.rokkhi.receptionistofficeapp.util
 
 object KeyFrame {
 
+    const val imageUploadURL="http://13.76.190.212:3000/api/v1/image/uploadSingle"
+
     // private const server key
     const val KEY_INSIDE = "INSIDE"
     const val KEY_OUTSIDE = "OUTSIDE"
