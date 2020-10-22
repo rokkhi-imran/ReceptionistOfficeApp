@@ -3,7 +3,6 @@ package com.rokkhi.receptionistofficeapp.ui.splash
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.firebase.ui.auth.AuthUI
@@ -11,9 +10,7 @@ import com.firebase.ui.auth.AuthUI.IdpConfig
 import com.firebase.ui.auth.AuthUI.IdpConfig.PhoneBuilder
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
-import com.google.firebase.auth.FirebaseUser
 import com.rokkhi.receptionistofficeapp.R
 import com.rokkhi.receptionistofficeapp.base.BaseActivity
 import com.rokkhi.receptionistofficeapp.databinding.SplashActivityBinding
@@ -25,33 +22,24 @@ import java.util.*
 class SplashActivity : BaseActivity<SplashActivityBinding>() {
 
     private lateinit var viewModel: SplashViewModel
+    override fun layoutRes(): Int = R.layout.splash_activity
 
     private lateinit var mAuthListener: AuthStateListener
     private lateinit var phoneConfigWithDefaultNumber: IdpConfig
 
+    //todo: delay screen navigator 3 sec after firebase token id generated with kotlin coroutine
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding.lifecycleOwner = this
         viewModel = ViewModelProvider(this, viewModelFactory).get(SplashViewModel::class.java)
 
-
-        mAuthListener = AuthStateListener { firebaseAuth ->
-
-            if (firebaseAuth.currentUser == null) {
-                gosignpage()
-            } else {
-
-                ScreenNavigator.navigateMainActivity(activityContext)
-
-            }
+        mAuthListener = AuthStateListener {
+            if (it.currentUser == null) gosignpage()
+            else ScreenNavigator.navigateMainActivity(activityContext)
         }
 
-
     }
-
-    override fun layoutRes(): Int = R.layout.splash_activity
-
 
     //check stroage Permission End
     private fun gosignpage() {
@@ -76,6 +64,7 @@ class SplashActivity : BaseActivity<SplashActivityBinding>() {
     private fun handleSignInResponse(resultCode: Int, data: Intent?) {
         val response = IdpResponse.fromResultIntent(data)
         if (resultCode == RESULT_OK) {
+            //todo: handle sign in response in tab
         } else {
             if (response == null) {
                 showMessage(getString(R.string.sign_in_cancelled))
@@ -92,7 +81,6 @@ class SplashActivity : BaseActivity<SplashActivityBinding>() {
         }
     }
 
-
     fun signInPhone(view: View?) {
         startActivityForResult(
             AuthUI.getInstance()
@@ -105,26 +93,14 @@ class SplashActivity : BaseActivity<SplashActivityBinding>() {
         )
     }
 
-    override fun onRestart() {
-        super.onRestart()
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
-
-
     override fun onStart() {
         super.onStart()
-        mAuthListener?.let { mAuth.addAuthStateListener(it) }
+        mAuthListener.let { mAuth.addAuthStateListener(it) }
     }
 
     override fun onStop() {
         super.onStop()
-
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener!!)
-        }
+        mAuth.removeAuthStateListener(mAuthListener!!)
     }
 
 
