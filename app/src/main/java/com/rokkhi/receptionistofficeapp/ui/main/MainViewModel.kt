@@ -6,7 +6,7 @@ import com.rokkhi.receptionistofficeapp.helper.SharedPrefHelper
 import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.EmployeeEntryChangeResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.UserResponse
-import com.rokkhi.receptionistofficeapp.statics.EmployeeEntryStatus
+import com.rokkhi.receptionistofficeapp.util.KeyFrame
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private var repo: MainRepo, private val shf: SharedPrefHelper) : ViewModel() {
@@ -37,7 +37,8 @@ class MainViewModel @Inject constructor(private var repo: MainRepo, private val 
 //        }
 //    }
 
-    fun recordEmployeeEntry(companyId: Int, employeeId: Int, departmentId: Int, branchId: Int, receptionistId: Int, acknowledgedBy: Int, status: EmployeeEntryStatus): LiveData<ApiResponse<EmployeeEntryChangeResponse>> = repo.recordEmployeeEntry(companyId, employeeId, departmentId, branchId, receptionistId, acknowledgedBy, EmployeeEntryStatus.INSIDE)
+    fun recordEmployeeEntry(companyId: Int, employeeId: Int, departmentId: Int, branchId: Int, receptionistId: Int, acknowledgedBy: Int, status: String): LiveData<ApiResponse<EmployeeEntryChangeResponse>>
+            = repo.recordEmployeeEntry(companyId, employeeId, departmentId, branchId, receptionistId, acknowledgedBy, KeyFrame.KEY_INSIDE)
 
 
     override fun onCleared() {

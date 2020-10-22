@@ -3,7 +3,6 @@ package com.rokkhi.receptionistofficeapp.util
 import android.app.Activity
 import android.graphics.Color
 import android.text.Editable
-import android.util.Log
 import android.util.Patterns
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -12,6 +11,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.rokkhi.receptionistofficeapp.R
 import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
+import timber.log.Timber
 
 object StaticFunction {
 
@@ -43,7 +43,7 @@ object StaticFunction {
     fun isvalidphone11(phoneno: String): Boolean {
         if (phoneno.isEmpty()) return false
         if (phoneno[0] != '0') return false
-        Log.d("TAG", "isvalidphone: bb " + phoneno + " " + phoneno.length)
+        Timber.d( "isValidPhone: bb $phoneno ${phoneno.length}")
         if (phoneno.length != 11) return false
         for (i in 0..10) {
             val xx = phoneno[i]
@@ -52,32 +52,24 @@ object StaticFunction {
         return true
     }
 
-    fun getvalidphone(phoneno: String): String? {
-        var phoneno = phoneno
-        if (phoneno[0] == '8') {
-            phoneno = phoneno.substring(2)
-        }
+    fun getValidPhone(phoneNo: String): String? {
+        var phoneno = phoneNo
+        if (phoneno[0] == '8') phoneno = phoneno.substring(2)
         phoneno = phoneno.replace("-", "")
         phoneno = phoneno.replace("+88", "")
         phoneno = phoneno.replace(" ", "")
         return phoneno
     }
 
-    fun isValidEmail(target: String?): Boolean {
-        return if (target == null) false else Patterns.EMAIL_ADDRESS.matcher(target).matches()
-    }
-
     fun checkValidation(eT: TextInputEditText, text: Editable?, s: String): Boolean {
-
         return if (text!!.isEmpty()) {
-            eT.requestFocus()
-            eT.error = s
-            false
-        }else{
-            true
-        }
-
+            eT.requestFocus(); eT.error = s; false
+        } else true
     }
+
+    fun isValidEmail(target: String?): Boolean = if (target == null) false else Patterns.EMAIL_ADDRESS.matcher(target).matches()
+    fun checkInputValidationEditText(editText: TextInputEditText, errorMessage: String): Boolean = !checkValidation(editText, editText.text, errorMessage)
+
 
 
     fun accessPermission(code: String): Boolean = code==KeyFrame.RECEPTION_ROLE_CODE
