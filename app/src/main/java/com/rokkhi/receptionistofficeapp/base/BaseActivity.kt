@@ -5,6 +5,7 @@ import android.app.Application
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
@@ -17,6 +18,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.rokkhi.receptionistofficeapp.di.ActivityScope
 import com.rokkhi.receptionistofficeapp.helper.SharedPrefHelper
+import com.rokkhi.receptionistofficeapp.statics.EmployeeEntryStatus
+import com.rokkhi.receptionistofficeapp.statics.EmployeeEntryStatuss
 import com.rokkhi.receptionistofficeapp.util.KeyFrame
 import dagger.android.AndroidInjection
 import timber.log.Timber
@@ -41,9 +44,12 @@ abstract class BaseActivity<D : ViewDataBinding> : AppCompatActivity() {
         super.onStart()
         if (mAuth.currentUser != null) {
             mAuth.currentUser!!.getIdToken(true).addOnSuccessListener {
-                val token = it.token
                 if (it.token != null) sharedPrefHelper.putString(KeyFrame.USER_AUTH, it.token!!)
-                Timber.e("token: ${sharedPrefHelper.getString(KeyFrame.USER_AUTH)}")
+                Timber.e("token : ${sharedPrefHelper.getString(KeyFrame.USER_AUTH)}")
+                Log.e("main","error")
+                Timber.e("error")
+                Log.e("a","enum to string value  EmployeeEntryStatus = ${EmployeeEntryStatus.INSIDE} , EmployeeEntryStatuss = ${EmployeeEntryStatuss.INSIDE}")
+                Log.e("main","error")
             }
         }
     }

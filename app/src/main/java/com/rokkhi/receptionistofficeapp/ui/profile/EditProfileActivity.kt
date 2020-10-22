@@ -27,7 +27,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>(), IPickRes
         dataBinding.userPhotoIV.setOnClickListener { StaticFunction.selectImage(this) }
         dataBinding.imageUploadTV.setOnClickListener { StaticFunction.selectImage(this) }
 
-        dataBinding.phoneNoET.setText(StaticFunction.getvalidphone(mAuth.currentUser?.phoneNumber.toString()))
+        dataBinding.phoneNoET.setText(StaticFunction.getValidPhone(mAuth.currentUser?.phoneNumber.toString()))
 
         dataBinding.SubmitUserInfoBtn.setOnClickListener { callSubmitDataFunction() }
 

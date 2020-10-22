@@ -45,7 +45,7 @@ data class ParcelReceivedResponse(val `data`: ParcelReceivedData, val errorCode:
 data class ParcelReceivedData(val address: String, val contact: String, val createdDate: String, val deletedDate: Any, val email: String, val exitTime: String, val id: Int, val image: String, val inTime: String, val name: String, val purpose: String, val status: String, val thumbImage: String, val type: String, val updatedDate: String) : Serializable
 
 // upload single
-data class UploadSingleImageResponse(val `data`: String, val errorCode: Int, val errors: List<Any>, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String):Serializable
+data class UploadSingleImageResponse(@SerializedName("data") val imageDownloadURL: String, val errorCode: Int, val errors: List<Any>, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String):Serializable
 
 // record employee entry
 data class EmployeeEntryChangeResponse(val `data`: EmployeeEntryChangeData, val status: String, val statusCode: Int):Serializable
