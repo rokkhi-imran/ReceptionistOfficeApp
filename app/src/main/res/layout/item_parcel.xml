@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="data"
+            type="com.rokkhi.receptionistofficeapp.networkmodel.GetParcelsData" />
+    </data>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +22,8 @@
             android:padding="@dimen/_5sdp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/one"
+                android:id="@+id/ivParcel"
+                loadProfileImage='@{data.image}'
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
                 android:layout_marginStart="8dp"
@@ -26,30 +34,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvName"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:gravity="top"
-                android:text="name"
+                android:layout_marginStart="@dimen/_22sdp"
+                android:layout_marginBottom="@dimen/_28sdp"
+                android:gravity="center|start"
+                android:text='@{"Name: "+data.name}'
                 android:textColor="@color/black"
-                android:textSize="17sp"
-                app:layout_constraintStart_toEndOf="@+id/one"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintBottom_toBottomOf="@id/ivParcel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivParcel"
+                app:layout_constraintTop_toTopOf="@id/ivParcel" />
 
             <TextView
-                android:id="@+id/flatNumberET"
-                android:layout_width="wrap_content"
+                android:id="@+id/flatNumber"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="@dimen/_22sdp"
+                android:gravity="start|center"
                 android:text="Flat: "
-                android:textSize="15sp"
-                app:layout_constraintStart_toEndOf="@+id/one"
-                app:layout_constraintTop_toBottomOf="@+id/name" />
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@id/ivParcel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivParcel"
+                app:layout_constraintTop_toBottomOf="@id/tvName" />
 
 
             <ImageView
@@ -64,6 +75,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <Button
+                android:id="@+id/btnStatus"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_46sdp"
+                android:layout_margin="@dimen/_18sdp"
+                android:text='@{data.status}'
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivParcel" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

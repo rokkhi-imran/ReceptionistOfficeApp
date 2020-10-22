@@ -39,7 +39,6 @@ abstract class BaseActivity<D : ViewDataBinding> : AppCompatActivity() {
     var activityContext: Activity? = null
     lateinit var mAuth: FirebaseAuth
 
-
     override fun onStart() {
         super.onStart()
         if (mAuth.currentUser != null) {
@@ -48,7 +47,7 @@ abstract class BaseActivity<D : ViewDataBinding> : AppCompatActivity() {
                     sharedPrefHelper.putString(KeyFrame.USER_AUTH, it.token!!)
                     sharedPrefHelper.putString(KeyFrame.PHONE_NUMBER, mAuth.currentUser!!.phoneNumber!!)
                 }
-                Timber.e("firebase token : ${sharedPrefHelper.getString(KeyFrame.USER_AUTH)}")
+                logThis("firebase token : ${sharedPrefHelper.getString(KeyFrame.USER_AUTH)}")
             }
         }
     }
@@ -80,6 +79,11 @@ abstract class BaseActivity<D : ViewDataBinding> : AppCompatActivity() {
 
     protected fun logThis(message: String?) {
         Timber.e("$message")
+    }
+
+    protected fun logThisWithToast(message: String?) {
+        Timber.e("$message")
+        showToast(message)
     }
 
     protected fun showProgressBar(isLoading: Boolean, view: View) {

@@ -5,7 +5,7 @@ import android.content.Intent
 import com.rokkhi.receptionistofficeapp.ui.attendance_in.AttendanceInActivity
 import com.rokkhi.receptionistofficeapp.ui.attendance_out.AttendanceOutActivity
 import com.rokkhi.receptionistofficeapp.ui.main.MainActivity
-import com.rokkhi.receptionistofficeapp.ui.parcel_delivery.ParcelDelieveredActivity
+import com.rokkhi.receptionistofficeapp.ui.parcel_delivery.ParcelDeliveredActivity
 import com.rokkhi.receptionistofficeapp.ui.parcel_received.ParcelReceivedActivity
 import com.rokkhi.receptionistofficeapp.ui.splash.SplashActivity
 import com.rokkhi.receptionistofficeapp.ui.visitor_in.VisitorInActivity
@@ -46,7 +46,7 @@ object ScreenNavigator {
     }
 
     fun navigateParcelDeliveredActivity(activity: Activity?) {
-        activity?.startActivity(Intent(activity, ParcelDelieveredActivity::class.java))
+        activity?.startActivity(Intent(activity, ParcelDeliveredActivity::class.java))
     }
 
 
