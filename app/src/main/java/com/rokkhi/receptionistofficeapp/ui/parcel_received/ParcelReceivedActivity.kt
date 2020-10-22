@@ -1,6 +1,5 @@
 package com.rokkhi.receptionistofficeapp.ui.parcel_received
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -9,18 +8,18 @@ import com.rokkhi.receptionistofficeapp.R
 import com.rokkhi.receptionistofficeapp.base.BaseActivity
 import com.rokkhi.receptionistofficeapp.databinding.ActivityParcelInBinding
 import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
-import com.rokkhi.receptionistofficeapp.statics.EmployeeEntryStatuss
+import com.rokkhi.receptionistofficeapp.util.KeyFrame
 import com.rokkhi.receptionistofficeapp.util.StaticFunction
 import com.vansuita.pickimage.bean.PickResult
 import com.vansuita.pickimage.listeners.IPickResult
+import java.io.File
 
 class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickResult {
 
-    lateinit var viewModel: ParcelReceivedViewModel
-    var mFileUri = ""
-    private var parcelPicture: Bitmap? = null
+    private var parcelPictureAsFile: File? = null
 
     override fun layoutRes(): Int = R.layout.activity_parcel_in
+    lateinit var viewModel: ParcelReceivedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,13 +30,30 @@ class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickRes
         dataBinding.imageUploadTV.setOnClickListener { StaticFunction.selectImage(this) }
         dataBinding.SubmitUserInfoBtn.setOnClickListener {
             if (checkInputValidation()) {
-                viewModel.uploadSingle(parcelPicture!!, EmployeeEntryStatuss.INSIDE.status, "", "").observe(this, Observer { apiResponse -> // todo: remove this line
-                    when (apiResponse) {
-                        is ApiResponse.Success -> {
-                            showMessage(apiResponse.data.imageDownloadURL)
-                        }
-                        is ApiResponse.Progress -> showProgressBar(apiResponse.loading, dataBinding.progressBar)
-                        is ApiResponse.Failure -> showMessage(apiResponse.errorMessage.message)
+
+                sharedPrefHelper.putString(KeyFrame.KEY_COMPANY_NAME, "Rokkhi") // todo: remove this line (set company name from shared pref)
+
+//                if (parcelPictureAsFile != null)
+//                    viewModel.uploadSingle(parcelPictureAsFile!!, KeyFrame.KEY_PARCEL, sharedPrefHelper.getString(KeyFrame.KEY_COMPANY_NAME), parcelPictureAsFile!!.name).observe(this, Observer {
+//                        when (it) {
+//                            is ApiResponse.Success -> {
+//                                showMessage(it.data.imageDownloadURL)
+//                                logThis(it.data.message)
+//                            }
+//                            is ApiResponse.Progress -> showProgressBar(it.loading, dataBinding.progressBar)
+//                            is ApiResponse.Failure -> showMessage(it.errorMessage.message)
+//                            is ApiResponse.ErrorCode -> logThis("error code ${it.errorCode}")
+//                        }
+//                    })
+//                logThis("is that thing printing first?")
+
+                viewModel.addParcel(1,dataBinding.parcelNameET.text.toString(),dataBinding.parcelCompanyET.text.toString(),
+                "","",45,45,1,1).observe(this, Observer {
+                    when(it){
+                        is ApiResponse.Success -> showMessage("-----------------${it.data.status}---------------")
+                        is ApiResponse.Progress -> showProgressBar(it.loading,dataBinding.progressBar)
+                        is ApiResponse.Failure -> logThis(it.errorMessage.message)
+                        is ApiResponse.ErrorCode -> logThis(it.errorCode.message)
                     }
                 })
             }
@@ -53,10 +69,10 @@ class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickRes
 
     override fun onPickResult(r: PickResult?) {
         if (r!!.error == null) {
-            dataBinding.userPhotoIV.setImageURI(null)
-            mFileUri = r.uri.toString()
-            parcelPicture = r.bitmap
             dataBinding.userPhotoIV.setImageURI(r.uri)
+//            parcelPictureAsFile = File(r.uri.toString(), "${System.currentTimeMillis()}_${sharedPrefHelper.getString(KeyFrame.PHONE_NUMBER)}")
+            parcelPictureAsFile = File(r.uri.toString(), "${System.currentTimeMillis()}")
+            logThis("fileURI ${parcelPictureAsFile!!.toURI()}  &  fileName ${parcelPictureAsFile!!.name}")
         } else Toast.makeText(this, r.error.message, Toast.LENGTH_LONG).show()
     }
 }

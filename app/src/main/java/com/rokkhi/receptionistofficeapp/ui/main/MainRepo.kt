@@ -1,13 +1,11 @@
 package com.rokkhi.receptionistofficeapp.ui.main
 
-import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import com.rokkhi.receptionistofficeapp.di.RokkhiApiUrl
 import com.rokkhi.receptionistofficeapp.network.RokkhiApi
 import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.network.wrapper.NetworkBoundResource
 import com.rokkhi.receptionistofficeapp.networkmodel.*
-import com.rokkhi.receptionistofficeapp.statics.EmployeeEntryStatus
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -103,19 +101,7 @@ class MainRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
         }.asLiveData()
     }
 
-    fun uploadSingle(image: Bitmap, folderName: String, subFolderName: String, fileName: String): LiveData<ApiResponse<UploadSingleImageResponse>> {
-        val map = HashMap<String, Any>()
-        map["image"] = image
-        map["folderName"] = folderName
-        map["subFolderName"] = subFolderName
-        map["fileName"] = fileName
-        return object : NetworkBoundResource<UploadSingleImageResponse>() {
-            override fun createCall(): Single<UploadSingleImageResponse> = api.uploadSingle(map)
-            override fun createDisposable(): CompositeDisposable = disposable
-        }.asLiveData()
-    }
-
-    fun recordEmployeeEntry(companyId: Int, employeeId: Int, departmentId: Int, branchId: Int, receptionistId: Int, acknowledgedBy: Int, status: EmployeeEntryStatus): LiveData<ApiResponse<EmployeeEntryChangeResponse>> {
+    fun recordEmployeeEntry(companyId: Int, employeeId: Int, departmentId: Int, branchId: Int, receptionistId: Int, acknowledgedBy: Int, status: String): LiveData<ApiResponse<EmployeeEntryChangeResponse>> {
         val map = HashMap<String, Any>()
         map["companyId"] = companyId
         map["employeeId"] = employeeId

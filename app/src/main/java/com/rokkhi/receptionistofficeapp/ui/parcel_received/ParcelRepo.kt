@@ -1,6 +1,5 @@
 package com.rokkhi.receptionistofficeapp.ui.parcel_received
 
-import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import com.rokkhi.receptionistofficeapp.di.RokkhiApiUrl
 import com.rokkhi.receptionistofficeapp.network.RokkhiApi
@@ -12,7 +11,11 @@ import com.rokkhi.receptionistofficeapp.networkmodel.ParcelReceivedResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.UploadSingleImageResponse
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
 import javax.inject.Inject
+
 
 class ParcelRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
 
@@ -53,16 +56,16 @@ class ParcelRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
         }.asLiveData()
     }
 
-    fun uploadSingle(image: Bitmap, folderName: String, subFolderName: String, fileName: String): LiveData<ApiResponse<UploadSingleImageResponse>> {
-        val map = HashMap<String, Any>()
-        map["image"] = image
-        map["folderName"] = folderName
-        map["subFolderName"] = subFolderName
-        map["fileName"] = fileName
+    fun uploadSingle(image: File, folderName: String, subFolderName: String, fileName: String): LiveData<ApiResponse<UploadSingleImageResponse>> {
         return object : NetworkBoundResource<UploadSingleImageResponse>() {
-            override fun createCall(): Single<UploadSingleImageResponse> = api.uploadSingle(map)
+            override fun createCall(): Single<UploadSingleImageResponse> = api.uploadSingle(image, folderName, subFolderName, fileName)
             override fun createDisposable(): CompositeDisposable = disposable
         }.asLiveData()
     }
+
+    private fun toRequestBody(value: String): Any {
+        return value.toRequestBody("text/plain".toMediaTypeOrNull())
+    }
+
 
 }

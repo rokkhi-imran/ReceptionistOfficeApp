@@ -5,7 +5,6 @@ import android.app.Application
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
@@ -18,8 +17,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.rokkhi.receptionistofficeapp.di.ActivityScope
 import com.rokkhi.receptionistofficeapp.helper.SharedPrefHelper
-import com.rokkhi.receptionistofficeapp.statics.EmployeeEntryStatus
-import com.rokkhi.receptionistofficeapp.statics.EmployeeEntryStatuss
 import com.rokkhi.receptionistofficeapp.util.KeyFrame
 import dagger.android.AndroidInjection
 import timber.log.Timber
@@ -30,10 +27,13 @@ import javax.inject.Inject
 abstract class BaseActivity<D : ViewDataBinding> : AppCompatActivity() {
 
     protected lateinit var dataBinding: D
+
     @Inject
     lateinit var applicationContext: Application
+
     @Inject
     lateinit var sharedPrefHelper: SharedPrefHelper
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     var activityContext: Activity? = null
@@ -44,12 +44,11 @@ abstract class BaseActivity<D : ViewDataBinding> : AppCompatActivity() {
         super.onStart()
         if (mAuth.currentUser != null) {
             mAuth.currentUser!!.getIdToken(true).addOnSuccessListener {
-                if (it.token != null) sharedPrefHelper.putString(KeyFrame.USER_AUTH, it.token!!)
-                Timber.e("token : ${sharedPrefHelper.getString(KeyFrame.USER_AUTH)}")
-                Log.e("main","error")
-                Timber.e("error")
-                Log.e("a","enum to string value  EmployeeEntryStatus = ${EmployeeEntryStatus.INSIDE} , EmployeeEntryStatuss = ${EmployeeEntryStatuss.INSIDE}")
-                Log.e("main","error")
+                if (it.token != null) {
+                    sharedPrefHelper.putString(KeyFrame.USER_AUTH, it.token!!)
+                    sharedPrefHelper.putString(KeyFrame.PHONE_NUMBER, mAuth.currentUser!!.phoneNumber!!)
+                }
+                Timber.e("firebase token : ${sharedPrefHelper.getString(KeyFrame.USER_AUTH)}")
             }
         }
     }
@@ -67,15 +66,20 @@ abstract class BaseActivity<D : ViewDataBinding> : AppCompatActivity() {
     @LayoutRes
     abstract fun layoutRes(): Int
 
-    protected fun log(message: String?){
+    protected fun log(message: String?) {
         Timber.e("log: $message")
     }
 
     protected fun showMessage(message: String?) {
         Snackbar.make(findViewById(android.R.id.content), "" + message, Snackbar.LENGTH_LONG).show()
     }
+
     protected fun showToast(message: String?) {
-        Toast.makeText(this,""+message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + message, Toast.LENGTH_SHORT).show();
+    }
+
+    protected fun logThis(message: String?) {
+        Timber.e("$message")
     }
 
     protected fun showProgressBar(isLoading: Boolean, view: View) {

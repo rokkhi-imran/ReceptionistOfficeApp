@@ -10,25 +10,25 @@ import java.io.Serializable
 data class LoginResponse(val active_status: String, val msg: String, @SerializedName("surveyor_id ") val surveyor_id: Int, val token: String) : Serializable
 
 // user response
-data class UserResponse(val `data`: UserResponseData, val errorCode: Int, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String) : Serializable
+data class UserResponse(val `data`: UserResponseData, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String) : Serializable
 data class UserResponseData(val address: String, val age: Int, val branch: Any, val company: UserResponseCompany, val contactPersonName: String, val contactPersonPhone: String, val createdDate: String, val deletedDate: Any, val department: Any, val email: String, val firebaseId: String, val gender: String, val id: Int, val image: String, val isActive: Boolean, val name: String, val nid: String, val password: String, val phone: String, val primaryRoleCode: String, val thumbImage: String, val updatedDate: String) : Serializable
 data class UserResponseCompany(val address: String, val contactInfo: String, val contactPerson: String, val createdDate: String, val deletedDate: Any, val email: String, val firebaseId: String, val id: Int, val isActive: Boolean, val latitude: Any, val longitude: Any, val name: String, val password: String, val type: String, val updatedDate: String) : Serializable
 
 // entrance - visitor
-data class AddVisitorResponse(val `data`: AddVisitorData, val errors: String, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String) : Serializable
+data class AddVisitorResponse(val `data`: AddVisitorData, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String) : Serializable
 data class AddVisitorData(val address: String, val authorizedBy: Int, val branch: Int, val company: Int, val contact: String, val createdDate: String, val deletedDate: Any, val department: Int, val email: String, val exitTime: Any, val id: Int, val image: String, val inTime: String, val name: String, val purpose: String, val receivedBy: Int, val status: String, val thumbImage: String, val type: String, val updatedDate: String) : Serializable
 
 // entrance - parcel
-data class AddParcelResponse(val `data`: AddParcelData, val errors: String, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String) : Serializable
+data class AddParcelResponse(val `data`: AddParcelData, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String) : Serializable
 data class AddParcelData(val address: String, val associatedEmployee: Int, val branch: Int, val company: Int, val contact: String, val createdDate: String, val deletedDate: Any, val department: Int, val email: String, val exitTime: Any, val id: Int, val image: String, val inTime: String, val name: String, val purpose: String, val receivedBy: Int, val status: String, val thumbImage: String, val type: String, val updatedDate: String) : Serializable
 
 // get visitors
-data class GetVisitorsResponse(val `data`: List<GetVisitorsData>, val errors: Any, val status: String, val statusCode: Int) : Serializable
+data class GetVisitorsResponse(val `data`: List<GetVisitorsData>, val status: String, val statusCode: Int) : Serializable
 data class GetVisitorsData(val address: String, val contact: String, val createdDate: String, val deletedDate: Any, val department: GetVisitorsDepartment, val departmentName: String, val email: String, val exitTime: Any, val id: Int, val image: String, val inTime: String, val name: String, val purpose: String, val status: String, val thumbImage: String, val type: String, val updatedDate: String) : Serializable
 data class GetVisitorsDepartment(val createdDate: String, val deletedDate: Any, val description: String, val id: Int, val name: String, val updatedDate: String) : Serializable
 
 // get parcels
-data class GetParcelsResponse(val `data`: List<GetParcelsData>, val errors: List<Any>, val status: String, val statusCode: Int) : Serializable
+data class GetParcelsResponse(val `data`: List<GetParcelsData>,  val status: String, val statusCode: Int) : Serializable
 data class GetParcelsData(val address: String, val associatedEmployee: GetParcelsAssociatedEmployee, val contact: String, val createdDate: String, val deletedDate: Any, val email: String, val exitTime: Any, val id: Int, val image: String, val inTime: String, val name: String, val purpose: String, val status: String, val thumbImage: String, val type: String, val updatedDate: String) : Serializable
 data class GetParcelsAssociatedEmployee(val address: String, val age: Int, val branch: GetParcelsBranch, val company: GetParcelsCompany, val contactPersonName: String, val contactPersonPhone: String, val createdDate: String, val deletedDate: Any, val department: GetParcelsDepartment, val email: String, val gender: String, val id: Int, val image: String, val isActive: Boolean, val name: String, val nid: String, val password: String, val phone: String, val primaryRoleCode: String, val thumbImage: String, val updatedDate: String, val user: GetParcelsUser) : Serializable
 data class GetParcelsBranch(val address: String, val company: GetParcelsCompany, val contactInfo: String, val contactPerson: String, val createdDate: String, val deletedDate: Any, val email: String, val firebaseId: String, val id: Int, val isActive: Boolean, val latitude: Int, val longitude: Int, val name: String, val password: String, val type: String, val updatedDate: String) : Serializable
@@ -37,15 +37,15 @@ data class GetParcelsUser(val address: String, val age: Int, val branch: Any, va
 data class GetParcelsCompany(val address: String, val contactInfo: String, val contactPerson: String, val createdDate: String, val deletedDate: Any, val email: String, val firebaseId: String, val id: Int, val isActive: Boolean, val latitude: Any, val longitude: Any, val name: String, val password: String, val type: String, val updatedDate: String) : Serializable
 
 // change parcels status
-data class ChangeParcelsStatusResponse(val `data`: ChangeParcelsStatusData, val errorCode: Int, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String) : Serializable
+data class ChangeParcelsStatusResponse(val `data`: ChangeParcelsStatusData,  val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String) : Serializable
 data class ChangeParcelsStatusData(val address: String, val contact: String, val createdDate: String, val deletedDate: Any, val email: String, val exitTime: Any, val id: Int, val image: String, val inTime: String, val name: String, val purpose: String, val status: String, val thumbImage: String, val type: String, val updatedDate: String) : Serializable
 
 // parcel received
-data class ParcelReceivedResponse(val `data`: ParcelReceivedData, val errorCode: Int, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String) : Serializable
+data class ParcelReceivedResponse(val `data`: ParcelReceivedData, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String) : Serializable
 data class ParcelReceivedData(val address: String, val contact: String, val createdDate: String, val deletedDate: Any, val email: String, val exitTime: String, val id: Int, val image: String, val inTime: String, val name: String, val purpose: String, val status: String, val thumbImage: String, val type: String, val updatedDate: String) : Serializable
 
 // upload single
-data class UploadSingleImageResponse(@SerializedName("data") val imageDownloadURL: String, val errorCode: Int, val errors: List<Any>, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String):Serializable
+data class UploadSingleImageResponse(@SerializedName("data") val imageDownloadURL: String, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String):Serializable
 
 // record employee entry
 data class EmployeeEntryChangeResponse(val `data`: EmployeeEntryChangeData, val status: String, val statusCode: Int):Serializable

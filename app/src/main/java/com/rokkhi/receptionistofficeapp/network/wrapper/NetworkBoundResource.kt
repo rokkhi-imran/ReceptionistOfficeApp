@@ -27,6 +27,7 @@ abstract class NetworkBoundResource<ResultType>{
                 .doOnEvent { _, _ -> setValue(ApiResponse.loading(false)) }
                 .subscribeWith(object : DisposableSingleObserver<ResultType>(){
                     override fun onSuccess(data: ResultType) {
+//                        Timber.e("server data response : ${data.toString()}")
                         result.value = ApiResponse.success(data)
                     }
 

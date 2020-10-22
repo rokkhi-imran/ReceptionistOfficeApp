@@ -2,28 +2,25 @@ package com.rokkhi.receptionistofficeapp.util
 
 object KeyFrame {
 
+    // private const server key
+    const val KEY_INSIDE = "INSIDE"
+    const val KEY_OUTSIDE = "OUTSIDE"
+    const val KEY_PARCEL = "PARCEL"
+    const val KEY_VISITOR = "VISITOR"
+    const val RC_SIGN_IN = 12773
 
-     const val RC_SIGN_IN = 12773
+    //config key
     const val NOTIFICATION_SERVICE_ID: Int = 1011
-    const val NOTIFICATION_SERVICE_MESSAGE_INTENT_KEY = "message"
 
-    const val CUSTOM_REGULAR_FONT = "fonts/OpenSans-Regular.ttf"
-    const val CUSTOM_BOLD_FONT = "fonts/OpenSans-Bold.ttf"
-
+    // shared-pref key frame
+    const val KEY_COMPANY_NAME = "company_name"
+    const val KEY_COMPANY_ID = "company_id"
     const val USER_AUTH = "token"
+    const val PHONE_NUMBER = "phone_number"
     const val USER_ID = "user_id"
     const val USER_NAME = "username"
     const val NAME = "name"
     const val LOGIN_STATUS = "login_status"
-
-    const val SOMETHING_WRONG = "Something went wrong!"
-    const val TRY_AGAIN_LATER = "Try after some while!"
-    const val LET_US_KNOW = "Please contact developer!"
-    const val UPDATE_PROFILE = "Please update your profile first!"
-    const val DATE_TIME_PATTERN = "dd/MM/yyyy hh:mm:ss aa"
-    const val DATE_TIME_PATTERN_2 = "dd/MM/yyyy hh:mm aa"
-
-
 
     //permission handler code
     const val READ_STORAGE_PERMISSION_REQUEST_CODE: Int = 941
@@ -38,6 +35,16 @@ object KeyFrame {
 
     //exceptions
     const val EXCEPTION_NO_ANSWER_DATA_FOUND: String = "No answer is given / data selected"
+
+    //utils key
+    const val CUSTOM_REGULAR_FONT = "fonts/OpenSans-Regular.ttf"
+    const val CUSTOM_BOLD_FONT = "fonts/OpenSans-Bold.ttf"
+    const val SOMETHING_WRONG = "Something went wrong!"
+    const val TRY_AGAIN_LATER = "Try after some while!"
+    const val LET_US_KNOW = "Please contact developer!"
+    const val UPDATE_PROFILE = "Please update your profile first!"
+    const val DATE_TIME_PATTERN = "dd/MM/yyyy hh:mm:ss aa"
+    const val DATE_TIME_PATTERN_2 = "dd/MM/yyyy hh:mm aa"
 
 
 }
