@@ -15,6 +15,7 @@ class ParcelDeliveryViewModel @Inject constructor(private val repo:ParcelDeliver
 
     override fun onCleared() {
         super.onCleared()
+        repo.onCleared()
     }
 
 }

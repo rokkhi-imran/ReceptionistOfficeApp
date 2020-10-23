@@ -34,5 +34,7 @@ class ParcelDeliveredRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) 
         }.asLiveData()
     }
 
-
+    fun onCleared() {
+        disposable.clear()
+    }
 }

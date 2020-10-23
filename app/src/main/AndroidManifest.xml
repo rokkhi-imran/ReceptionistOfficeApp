@@ -56,7 +56,7 @@
         <activity android:name=".ui.parcel_delivery.ParcelDeliveredActivity" />
         <activity android:name=".ui.parcel_received.ParcelReceivedActivity" />
         <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.visitor_out.VisitorListActivity" />
+        <activity android:name=".ui.visitor_out.VisitorOutActivity" />
         <activity android:name=".ui.visitor_in.VisitorInActivity" />
         <activity android:name=".ui.attendance_in.AttendanceInActivity" />
         <activity android:name=".ui.splash.SplashActivity">

@@ -11,7 +11,7 @@ import com.rokkhi.receptionistofficeapp.ui.parcel_delivery.ParcelDeliveryViewMod
 import com.rokkhi.receptionistofficeapp.ui.parcel_received.ParcelReceivedViewModel
 import com.rokkhi.receptionistofficeapp.ui.splash.SplashViewModel
 import com.rokkhi.receptionistofficeapp.ui.visitor_in.VisitorInViewModel
-import com.rokkhi.receptionistofficeapp.ui.visitor_out.VisitorListViewModel
+import com.rokkhi.receptionistofficeapp.ui.visitor_out.VisitorOutViewModel
 import com.rokkhi.receptionistofficeapp.viewmodel.AppViewModelFactory
 import dagger.Binds
 import dagger.Module
@@ -45,8 +45,8 @@ abstract class ViewModelModule {
     abstract fun bindVisitorInViewModel(viewModel: VisitorInViewModel): ViewModel
     @Binds
     @IntoMap
-    @ViewModelKey(VisitorListViewModel::class)
-    abstract fun bindVisitorListViewModel(viewModel: VisitorListViewModel): ViewModel
+    @ViewModelKey(VisitorOutViewModel::class)
+    abstract fun bindVisitorListViewModel(viewModel: VisitorOutViewModel): ViewModel
 
     @Binds
     @IntoMap

@@ -5,4 +5,5 @@
     <string name="no_internet_connection">No Internet connection</string>
     <string name="unknown_error">Unknown error</string>
     <string name="content_description">content description</string>
+    <string name="string_search_flat">নাম অথবা ফ্লাট নাম্বার দিয়ে খুঁজুন</string>
 </resources>

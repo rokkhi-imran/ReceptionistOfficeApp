@@ -37,6 +37,10 @@ data class GetVisitorsResponse(val `data`: List<GetVisitorsData>, val status: St
 data class GetVisitorsData(val address: String, val contact: String, val createdDate: String, val deletedDate: Any, val department: GetVisitorsDepartment, val departmentName: String, val email: String, val exitTime: Any, val id: Int, val image: String, val inTime: String, val name: String, val purpose: String, val status: String, val thumbImage: String, val type: String, val updatedDate: String) : Serializable
 data class GetVisitorsDepartment(val createdDate: String, val deletedDate: Any, val description: String, val id: Int, val name: String, val updatedDate: String) : Serializable
 
+// change visitor status response
+data class ChangeVisitorStatusResponse(val `data`: ChangeVisitorStatusData, val status: String, val statusCode: Int)
+data class ChangeVisitorStatusData(val address: String, val contact: String, val createdDate: String, val deletedDate: String, val email: String, val exitTime: String, val id: Int, val image: String, val inTime: String, val name: String, val purpose: String, val status: String, val thumbImage: String, val type: String, val updatedDate: String)
+
 // get parcels
 data class GetParcelsResponse(val `data`: List<GetParcelsData>, val status: String, val statusCode: Int)
 data class GetParcelsData(val address: String, val associatedEmployee: GetParcelsAssociatedEmployee, val contact: String, val createdDate: String, val deletedDate: Any, val email: String, val exitTime: Any, val id: Int, val image: String, val inTime: String, val name: String, val purpose: String, val status: String, val thumbImage: String, val type: String, val updatedDate: String)
