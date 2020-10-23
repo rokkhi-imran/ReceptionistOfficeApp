@@ -7,6 +7,7 @@ import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.network.wrapper.NetworkBoundResource
 import com.rokkhi.receptionistofficeapp.networkmodel.ChangeVisitorStatusResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.GetVisitorsResponse
+import com.rokkhi.receptionistofficeapp.statics.VisitorStatus
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -22,7 +23,7 @@ class VisitorOutRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
         }.asLiveData()
     }
 
-    fun changeVisitorStatus(visitorId: Int, newStatus: String): LiveData<ApiResponse<ChangeVisitorStatusResponse>> {
+    fun changeVisitorStatus(visitorId: Int, newStatus: VisitorStatus): LiveData<ApiResponse<ChangeVisitorStatusResponse>> {
         val map = HashMap<String, Any>()
         map["visitorId"] = visitorId
         map["newStatus"] = newStatus

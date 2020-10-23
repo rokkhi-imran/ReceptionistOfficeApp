@@ -36,7 +36,7 @@ class AdapterVisitorOut : RecyclerView.Adapter<AdapterVisitorOut.ViewHolder>() {
     }
 
     interface OnAdapterItemClickListener {
-        fun onItemClick(parcelsData: GetVisitorsData)
+        fun onItemClick(visitorData: GetVisitorsData)
     }
 
 }

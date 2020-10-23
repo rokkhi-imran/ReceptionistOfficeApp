@@ -9,6 +9,7 @@ import com.rokkhi.receptionistofficeapp.base.BaseActivity
 import com.rokkhi.receptionistofficeapp.databinding.ActivityVisitorListBinding
 import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.GetVisitorsData
+import com.rokkhi.receptionistofficeapp.statics.VisitorStatus
 
 class VisitorOutActivity : BaseActivity<ActivityVisitorListBinding>(), AdapterVisitorOut.OnAdapterItemClickListener {
 
@@ -26,12 +27,12 @@ class VisitorOutActivity : BaseActivity<ActivityVisitorListBinding>(), AdapterVi
     }
 
     override fun onItemClick(visitorData: GetVisitorsData) {
-        showMessage("clicked on item ${visitorData.id}")
-        if (visitorData.status == "OUT") changeVisitorsStatus(visitorData.id, "IN")
-        if (visitorData.status == "IN") changeVisitorsStatus(visitorData.id, "OUT")
+        logThisWithToast("visitorID: ${visitorData.id} & status: ${visitorData.status}")
+        if (visitorData.status == "OUT") changeVisitorsStatus(visitorData.id, VisitorStatus.IN)
+        if (visitorData.status == "IN") changeVisitorsStatus(visitorData.id, VisitorStatus.OUT)
     }
 
-    private fun changeVisitorsStatus(visitorID: Int, statusMessage: String) {
+    private fun changeVisitorsStatus(visitorID: Int, statusMessage: VisitorStatus) {
         viewModel.changeVisitorOutStatus(visitorID, statusMessage).observe(this, Observer {
             when (it) {
                 is ApiResponse.Success -> {
