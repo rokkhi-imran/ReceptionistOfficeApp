@@ -53,7 +53,7 @@
         </provider>
 
         <activity android:name=".ui.attendance_out.AttendanceOutActivity" />
-        <activity android:name=".ui.parcel_delivery.ParcelDelieveredActivity" />
+        <activity android:name=".ui.parcel_delivery.ParcelDeliveredActivity" />
         <activity android:name=".ui.parcel_received.ParcelReceivedActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.visitor_out.VisitorListActivity" />

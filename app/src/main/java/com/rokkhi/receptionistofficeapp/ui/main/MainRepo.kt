@@ -5,7 +5,7 @@ import com.rokkhi.receptionistofficeapp.di.RokkhiApiUrl
 import com.rokkhi.receptionistofficeapp.network.RokkhiApi
 import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.network.wrapper.NetworkBoundResource
-import com.rokkhi.receptionistofficeapp.networkmodel.*
+import com.rokkhi.receptionistofficeapp.networkmodel.UserResponse
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -29,43 +29,7 @@ class MainRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
         disposable.clear()
     }
 
-    fun addVisitor(companyId: Int, name: String, address: String, contact: String, email: String, purpose: String, image: String, thumbImage: String, branchId: Int, departmentId: Int, receptionistId: Int, responderId: Int): LiveData<ApiResponse<AddVisitorResponse>> {
-        val map = HashMap<String, Any>()
-        map["companyId"] = companyId
-        map["name"] = name
-        map["address"] = address
-        map["contact"] = contact
-        map["email"] = email
-        map["purpose"] = purpose
-        map["image"] = image
-        map["thumbImage"] = thumbImage
-        map["branchId"] = branchId
-        map["departmentId"] = departmentId
-        map["receptionistId"] = receptionistId
-        map["responderId"] = responderId
-        return object : NetworkBoundResource<AddVisitorResponse>() {
-            override fun createCall(): Single<AddVisitorResponse> = api.addVisitor(map)
-            override fun createDisposable(): CompositeDisposable = disposable
-        }.asLiveData()
-    }
-
-    fun addParcel(companyId: Int, name: String, company: String, image: String, thumbImage: String, associatedEmployee: Int, receptionistId: Int, departmentId: Int, branchId: Int): LiveData<ApiResponse<AddParcelResponse>> {
-        val map = HashMap<String, Any>()
-        map["companyId"] = companyId
-        map["name"] = name
-        map["company"] = company
-        map["image"] = image
-        map["thumbImage"] = thumbImage
-        map["associatedEmployee"] = associatedEmployee
-        map["receptionistId"] = receptionistId
-        map["departmentId"] = departmentId
-        map["branchId"] = branchId
-        return object : NetworkBoundResource<AddParcelResponse>() {
-            override fun createCall(): Single<AddParcelResponse> = api.addParcel(map)
-            override fun createDisposable(): CompositeDisposable = disposable
-        }.asLiveData()
-    }
-
+/*
     fun getVisitors(companyId: Int): LiveData<ApiResponse<GetVisitorsResponse>> {
         val map = HashMap<String, Any>()
         map["companyId"] = companyId
@@ -103,6 +67,9 @@ class MainRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
         }.asLiveData()
     }
 
+    // implement api like this
+    //    fun recordEmployeeEntry(companyId: Int, employeeId: Int, departmentId: Int, branchId: Int, receptionistId: Int, acknowledgedBy: Int, status: String): LiveData<ApiResponse<EmployeeEntryChangeResponse>>
+    //        = repo.recordEmployeeEntry(companyId, employeeId, departmentId, branchId, receptionistId, acknowledgedBy, KeyFrame.KEY_INSIDE)
     fun recordEmployeeEntry(companyId: Int, employeeId: Int, departmentId: Int, branchId: Int, receptionistId: Int, acknowledgedBy: Int, status: String): LiveData<ApiResponse<EmployeeEntryChangeResponse>> {
         val map = HashMap<String, Any>()
         map["companyId"] = companyId
@@ -117,6 +84,7 @@ class MainRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
             override fun createDisposable(): CompositeDisposable = disposable
         }.asLiveData()
     }
+*/
 
 
 }

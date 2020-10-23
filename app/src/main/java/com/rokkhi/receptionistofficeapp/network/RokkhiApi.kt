@@ -29,6 +29,7 @@ interface RokkhiApi {
     fun getVisitors(@Body data: Map<String, Any>): Single<GetVisitorsResponse>
 
     @POST("/api/v1/entrance/getParcels")
+    @JvmSuppressWildcards
     fun getParcels(@Body data: Map<String, Any>): Single<GetParcelsResponse>
 
     @POST("/api/v1/entrance/changeVisitorStatus")

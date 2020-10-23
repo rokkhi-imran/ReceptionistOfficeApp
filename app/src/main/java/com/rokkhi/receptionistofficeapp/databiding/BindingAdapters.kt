@@ -1,4 +1,4 @@
-package live.qtec.survey.databiding
+package com.rokkhi.receptionistofficeapp.databiding
 
 import android.view.View
 import android.view.ViewGroup
@@ -13,14 +13,14 @@ import timber.log.Timber
 
 object BindingAdapters {
 
-  /*  @JvmStatic
+    @JvmStatic
     @BindingAdapter("loadProfileImage")
     fun loadProfileImage(view: ImageView, imageUrl: String) {
         if (imageUrl.isNotEmpty() && imageUrl.startsWith("http")) {
-            Timber.e(imageUrl)
+            Timber.e("leadingImageURL: $imageUrl into viewID: ${view.id}")
             Picasso.get().load(imageUrl).placeholder(R.drawable.user_avatar).centerCrop().resize(300, 300).into(view)
         }
-    }*/
+    }
 
     @JvmStatic
     @BindingAdapter("convertDateDMY")
@@ -36,7 +36,7 @@ object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter("single_layout_visibility")
-    fun singleLayoutVisibility(view: View, status: Boolean) {
+    fun viewVisibility(view: View, status: Boolean) {
         if (status) view.visibility = View.VISIBLE else view.visibility = View.GONE
     }
 
