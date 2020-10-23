@@ -28,14 +28,15 @@ interface RokkhiApi {
     fun addParcel(@Body data: Map<String, Any>): Single<AddParcelResponse>
 
     @POST("/api/v1/entrance/getVisitors")
-    fun getVisitors(@Body data: Map<String, Any>): Single<GetVisitorsResponse>
+    fun getVisitors(): Single<GetVisitorsResponse>
 
     @POST("/api/v1/entrance/getParcels")
     @JvmSuppressWildcards
     fun getParcels(@Body data: Map<String, Any>): Single<GetParcelsResponse>
 
     @POST("/api/v1/entrance/changeVisitorStatus")
-    fun changeVisitorStatus(@Body data: Map<String, Any>): Single<ChangeParcelsStatusResponse>
+    @JvmSuppressWildcards
+    fun changeVisitorStatus(@Body data: Map<String, Any>): Single<ChangeVisitorStatusResponse>
 
     // parcel received
     @POST("/api/v1/entrance/markParcelAsReceived")

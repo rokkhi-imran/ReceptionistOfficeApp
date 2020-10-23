@@ -9,7 +9,7 @@ import com.rokkhi.receptionistofficeapp.ui.parcel_delivery.ParcelDeliveredActivi
 import com.rokkhi.receptionistofficeapp.ui.parcel_received.ParcelReceivedActivity
 import com.rokkhi.receptionistofficeapp.ui.splash.SplashActivity
 import com.rokkhi.receptionistofficeapp.ui.visitor_in.VisitorInActivity
-import com.rokkhi.receptionistofficeapp.ui.visitor_out.VisitorListActivity
+import com.rokkhi.receptionistofficeapp.ui.visitor_out.VisitorOutActivity
 
 
 object ScreenNavigator {
@@ -30,7 +30,7 @@ object ScreenNavigator {
     }
 
     fun navigateVisitorListActivity(activity: Activity?) {
-        activity?.startActivity(Intent(activity, VisitorListActivity::class.java))
+        activity?.startActivity(Intent(activity, VisitorOutActivity::class.java))
     }
     fun navigateAttendanceInActivity(activity: Activity?) {
         activity?.startActivity(Intent(activity, AttendanceInActivity::class.java))
