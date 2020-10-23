@@ -9,6 +9,7 @@ import com.rokkhi.receptionistofficeapp.base.BaseActivity
 import com.rokkhi.receptionistofficeapp.databinding.ActivityParcelListBinding
 import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.GetParcelsData
+import com.rokkhi.receptionistofficeapp.util.KeyFrame
 
 class ParcelDeliveredActivity : BaseActivity<ActivityParcelListBinding>(), AdapterParcelDelivered.OnAdapterItemClickListener {
 
@@ -21,7 +22,7 @@ class ParcelDeliveredActivity : BaseActivity<ActivityParcelListBinding>(), Adapt
         dataBinding.lifecycleOwner = this
         viewModel = ViewModelProvider(this, viewModelFactory).get(ParcelDeliveryViewModel::class.java)
         createAdapter()
-        getParcelDataFromServer(2) //todo: change companyID [ use sharedPrefHelper.getString(KeyFrame.COMPANY_ID) ]
+        getParcelDataFromServer(sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt())
     }
 
 

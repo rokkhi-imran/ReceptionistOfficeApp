@@ -7,6 +7,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 import java.io.File
+import java.util.*
 
 interface RokkhiApi {
 
@@ -19,6 +20,7 @@ interface RokkhiApi {
 
     //entrance - addVisitor
     @POST("/api/v1/entrance/addVisitor")
+    @JvmSuppressWildcards
     fun addVisitor(@Body data: Map<String, Any>): Single<AddVisitorResponse>
 
     @POST("/api/v1/entrance/addParcel")
@@ -49,6 +51,10 @@ interface RokkhiApi {
     // upload single image
     @POST("/api/v1/entrance/recordEmployeeEntry")
     fun recordEmployeeEntry(@Body data: Map<String, Any>): Single<EmployeeEntryChangeResponse>
+
+    @POST("/api/v1/employee/getList")
+    @JvmSuppressWildcards
+    fun getEmployeeList(@Body map: HashMap<String, Any>): Single<EmployeeListResponse>
 
 
 /*

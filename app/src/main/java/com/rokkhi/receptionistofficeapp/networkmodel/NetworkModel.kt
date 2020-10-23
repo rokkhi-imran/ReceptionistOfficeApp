@@ -16,13 +16,128 @@ data class UserResponseData(val address: String, val age: Int, val branch: Any, 
 data class UserResponseCompany(val address: String, val contactInfo: String, val contactPerson: String, val createdDate: String, val deletedDate: Any, val email: String, val firebaseId: String, val id: Int, val isActive: Boolean, val latitude: Any, val longitude: Any, val name: String, val password: String, val type: String, val updatedDate: String) : Serializable
 */
 
-data class UserResponse(val `data`: UserResponseData, val status: String, val statusCode: Int)
-data class UserResponseData(val address: String, val age: Int, val contactPersonName: String, val contactPersonPhone: String, val createdDate: String, val deletedDate: Any, val devices: List<Device>, val email: String, val employee: List<UserEmployee>, val firebaseId: String, val gender: String, val id: Int, val image: String, val isActive: Boolean, val name: String, val nid: String, val password: String, val phone: String, val primaryRoleCode: String, val thumbImage: String, val updatedDate: String)
+//data class UserResponse(val `data`: UserResponseData, val status: String, val statusCode: Int)
+//data class UserResponseData(val address: String, val age: Int, val contactPersonName: String, val contactPersonPhone: String, val createdDate: String, val deletedDate: Any, val devices: List<Device>, val email: String, val employee: List<UserEmployee>, val firebaseId: String, val gender: String, val id: Int, val image: String, val isActive: Boolean, val name: String, val nid: String, val password: String, val phone: String, val primaryRoleCode: String, val thumbImage: String, val updatedDate: String)
+//data class UserEmployee(val address: String, val age: Int, val branch: UserResponseBranch, val company: UserResponseCompany, val contactPersonName: String, val contactPersonPhone: String, val createdDate: String, val deletedDate: Any, val department: UserDepartment, val email: String, val gender: String, val id: Int, val image: String, val isActive: Boolean, val name: String, val nid: String, val password: String, val phone: String, val primaryRoleCode: String = "a", val thumbImage: String, val updatedDate: String)
+//data class UserResponseBranch(val address: String, val contactInfo: String, val contactPerson: String, val createdDate: String, val deletedDate: Any, val email: String, val firebaseId: String, val id: Int, val isActive: Boolean, val latitude: Int, val longitude: Int, val name: String, val password: String, val type: String, val updatedDate: String)
+//data class UserResponseCompany(val address: String, val contactInfo: String, val contactPerson: String, val createdDate: String, val deletedDate: Any, val email: String, val firebaseId: String, val id: Int, val isActive: Boolean, val latitude: Any, val longitude: Any, val name: String, val password: String, val type: String, val updatedDate: String)
+//data class UserDepartment(val createdDate: String, val deletedDate: Any, val description: String, val id: Int, val name: String, val updatedDate: String)
+
+
+//Employee List
+
+data class EmployeeListResponse(
+    val data: List<EmployeeListData>,
+    val errors: List<Any>,
+    val status: String,
+    val statusCode: Int
+)
+
+data class EmployeeListData(
+    val address: String,
+    val age: Int,
+    val branch: EmployeeListBranch,
+    val company: EmployeeListCompany,
+    val contactPersonName: String,
+    val contactPersonPhone: String,
+    val createdDate: String,
+    val deletedDate: Any,
+    val department: EmployeeListDepartment,
+    val email: String,
+    val gender: String,
+    val id: Int,
+    val image: String,
+    val isActive: Boolean,
+    val name: String,
+    val nid: String,
+    val password: String,
+    val phone: String,
+    val primaryRoleCode: String,
+    val thumbImage: String,
+    val updatedDate: String,
+    val user: Any
+)
+
+data class EmployeeListBranch(
+    val address: String,
+    val contactInfo: String,
+    val contactPerson: String,
+    val createdDate: String,
+    val deletedDate: Any,
+    val email: String,
+    val firebaseId: String,
+    val id: Int,
+    val isActive: Boolean,
+    val latitude: Int,
+    val longitude: Int,
+    val name: String,
+    val password: String,
+    val type: String,
+    val updatedDate: String
+)
+
+data class EmployeeListCompany(
+    val address: String,
+    val contactInfo: String,
+    val contactPerson: String,
+    val createdDate: String,
+    val deletedDate: Any,
+    val email: String,
+    val firebaseId: String,
+    val id: Int,
+    val isActive: Boolean,
+    val latitude: Any,
+    val longitude: Any,
+    val name: String,
+    val password: String,
+    val type: String,
+    val updatedDate: String
+)
+
+data class EmployeeListDepartment(
+    val createdDate: String,
+    val deletedDate: Any,
+    val description: String,
+    val id: Int,
+    val name: String,
+    val updatedDate: String
+)
+
+//User Response
+data class UserResponse(
+    val `data`: UserResponseData,
+    val errors: List<Any>,
+    val status: String,
+    val statusCode: Int
+)
+data class UserResponseData(
+    val address: String,
+    val age: Int,
+    val branchId: Int,
+    val companyId: Int,
+    val contactPersonName: String,
+    val contactPersonPhone: String,
+    val createdDate: String,
+    val deletedDate: Any,
+    val departmentId: Int,
+    val devices: List<Device>,
+    val email: String,
+    val employee: List<Any>,
+    val firebaseId: String,
+    val gender: String,
+    val id: Int,
+    val image: String,
+    val isActive: Boolean,
+    val name: String,
+    val nid: String,
+    val password: String,
+    val phone: String,
+    val primaryRoleCode: String,
+    val thumbImage: String,
+    val updatedDate: String
+)
 data class Device(val createdDate: String, val deletedDate: Any, val deviceToken: String, val id: Int, val name: String, val type: String, val updatedDate: String)
-data class UserEmployee(val address: String, val age: Int, val branch: UserResponseBranch, val company: UserResponseCompany, val contactPersonName: String, val contactPersonPhone: String, val createdDate: String, val deletedDate: Any, val department: UserDepartment, val email: String, val gender: String, val id: Int, val image: String, val isActive: Boolean, val name: String, val nid: String, val password: String, val phone: String, val primaryRoleCode: String = "a", val thumbImage: String, val updatedDate: String)
-data class UserResponseBranch(val address: String, val contactInfo: String, val contactPerson: String, val createdDate: String, val deletedDate: Any, val email: String, val firebaseId: String, val id: Int, val isActive: Boolean, val latitude: Int, val longitude: Int, val name: String, val password: String, val type: String, val updatedDate: String)
-data class UserResponseCompany(val address: String, val contactInfo: String, val contactPerson: String, val createdDate: String, val deletedDate: Any, val email: String, val firebaseId: String, val id: Int, val isActive: Boolean, val latitude: Any, val longitude: Any, val name: String, val password: String, val type: String, val updatedDate: String)
-data class UserDepartment(val createdDate: String, val deletedDate: Any, val description: String, val id: Int, val name: String, val updatedDate: String)
+
 
 // entrance - visitor
 data class AddVisitorResponse(val `data`: AddVisitorData, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String) : Serializable

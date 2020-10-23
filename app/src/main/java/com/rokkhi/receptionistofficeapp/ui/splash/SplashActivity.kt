@@ -35,14 +35,14 @@ class SplashActivity : BaseActivity<SplashActivityBinding>() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(SplashViewModel::class.java)
 
         mAuthListener = AuthStateListener {
-            if (it.currentUser == null) gosignpage()
+            if (it.currentUser == null) goSignPage()
             else ScreenNavigator.navigateMainActivity(activityContext)
         }
 
     }
 
     //check stroage Permission End
-    private fun gosignpage() {
+    private fun goSignPage() {
         val whitelistedCountries: MutableList<String> = ArrayList()
         whitelistedCountries.add("in")
         whitelistedCountries.add("bd")

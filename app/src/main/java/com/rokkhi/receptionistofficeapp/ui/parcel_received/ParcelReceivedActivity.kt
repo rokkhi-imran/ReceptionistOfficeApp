@@ -46,8 +46,6 @@ class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickRes
         dataBinding.SubmitUserInfoBtn.setOnClickListener {
             if (checkInputValidation()) {
 
-                sharedPrefHelper.putString(KeyFrame.KEY_COMPANY_NAME, "Rokkhi") // todo: remove this line (set company name from shared pref)
-
                          if (imageBitmap!=null){
 
                              imageUploadApi(imageBitmap)
@@ -56,11 +54,6 @@ class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickRes
                          }else{
                              callApiToUploadData("")
                          }
-
-
-
-
-
             }
         }
     }
@@ -109,9 +102,7 @@ class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickRes
 
                 override fun onError(error: ANError) {
                     showProgressBar(false, dataBinding.progressBar)
-
                     // handle error
-//                    fullScreenAlertDialog.dismissdialog()
                     showToast("Image Upload Problem wait some Time Later")
                     Log.e("TAG = ", "onError: " + error.errorBody)
                     Log.e("TAG = ", "onError: " + error.message)
@@ -126,8 +117,11 @@ class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickRes
     private fun callApiToUploadData(imageLink: String) {
 
         viewModel.addParcel(
-            1, dataBinding.parcelNameET.text.toString(), dataBinding.parcelCompanyET.text.toString(),
-            imageLink, imageLink, 45, 45, 1, 1
+            sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(), dataBinding.parcelNameET.text.toString(), dataBinding.parcelCompanyET.text.toString(),
+            imageLink, imageLink, 45,//TODO associated employee should be changed
+            sharedPrefHelper.getString(KeyFrame.USER_ID).toInt(),
+            sharedPrefHelper.getString(KeyFrame.DEPARTMENT_ID).toInt(),
+            sharedPrefHelper.getString(KeyFrame.BRANCH_ID).toInt()
         ).observe(this, Observer {
             when (it) {
                 is ApiResponse.Success -> showMessage("-----------------${it.data.status}---------------")

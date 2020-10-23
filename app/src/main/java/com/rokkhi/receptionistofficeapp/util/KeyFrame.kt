@@ -15,15 +15,16 @@ object KeyFrame {
     const val NOTIFICATION_SERVICE_ID: Int = 1011
 
     // shared-pref key frame
-    const val KEY_COMPANY_NAME = "company_name"
-    const val KEY_COMPANY_ID = "company_id"
+
     const val USER_AUTH = "token"
     const val DEVICE_TOKEN = "device_token"
     const val PHONE_NUMBER = "phone_number"
     const val USER_ID = "user_id"
     const val USER_NAME = "username"
-    const val NAME = "name"
-    const val LOGIN_STATUS = "login_status"
+    const val BRANCH_ID = "branchId"
+    const val COMPANY_ID = "companyId"
+    const val DEPARTMENT_ID = "departmentId"
+
 
     //User Role Code
     const val RECEPTION_ROLE_CODE = "1001"
