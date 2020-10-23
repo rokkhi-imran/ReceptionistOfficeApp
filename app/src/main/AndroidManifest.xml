@@ -52,6 +52,12 @@
                 android:resource="@xml/picker_provider_paths" />
         </provider>
 
+        <service android:name=".notification.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity android:name=".ui.attendance_out.AttendanceOutActivity" />
         <activity android:name=".ui.parcel_delivery.ParcelDeliveredActivity" />
         <activity android:name=".ui.parcel_received.ParcelReceivedActivity" />
