@@ -160,19 +160,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Alert !")
-        builder.setMessage("This app for restricted user. contact to you company to make a profile for you.\n Thank you")
+        builder.setMessage("This app for restricted user. contact to you company to make a profile for you.\n Thank you.")
+        builder.setCancelable(false)
 
 
-        builder.setPositiveButton("Yes") { dialog, which ->
-
-            finish()
+        builder.setPositiveButton("OK, LogOut") { dialog, which ->
+            mAuth.signOut()
+            ScreenNavigator.navigateSplashActivity(activityContext)
 
             dialog.dismiss()
-        }
-
-        builder.setNegativeButton("No") { dialog, which ->
-            dialog.dismiss()
-
         }
 
         builder.show()

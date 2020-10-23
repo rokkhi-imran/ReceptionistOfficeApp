@@ -1,6 +1,10 @@
 package com.rokkhi.receptionistofficeapp.ui.parcel_received
 
+import android.database.Cursor
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -19,11 +23,14 @@ import com.vansuita.pickimage.bean.PickResult
 import com.vansuita.pickimage.listeners.IPickResult
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.ByteArrayOutputStream
 import java.io.File
+
 
 class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickResult {
 
-    private var parcelPictureAsFile: File? = null
+    var mFileUri = ""
+    private var imageBitmap: Bitmap? = null
 
     override fun layoutRes(): Int = R.layout.activity_parcel_in
     lateinit var viewModel: ParcelReceivedViewModel
@@ -41,9 +48,9 @@ class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickRes
 
                 sharedPrefHelper.putString(KeyFrame.KEY_COMPANY_NAME, "Rokkhi") // todo: remove this line (set company name from shared pref)
 
-                         if (parcelPictureAsFile!=null){
+                         if (imageBitmap!=null){
 
-                             imageUploadApi(parcelPictureAsFile!!)
+                             imageUploadApi(imageBitmap)
 
 
                          }else{
@@ -58,17 +65,31 @@ class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickRes
         }
     }
 
-    private fun imageUploadApi(parcelPictureAsFile: File) {
+    private fun imageUploadApi(imageBitmap: Bitmap?) {
 
 
+        val bytes = ByteArrayOutputStream()
+
+        imageBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+
+        val path: String = MediaStore.Images.Media.insertImage(activityContext?.contentResolver, imageBitmap, "Title", null)
+        val uri: Uri = Uri.parse(path)
+
+        val cursor: Cursor? = contentResolver.query(uri, null, null, null, null)
+        cursor?.moveToFirst()
+        val idx: Int? = cursor?.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+        val file: File = File(cursor?.getString(idx!!))
+
+
+        Log.e("TAG", "imageUploadApi File: "+file )
 
         showProgressBar(true, dataBinding.progressBar)
 
         AndroidNetworking.upload(KeyFrame.imageUploadURL)
-            .addMultipartFile("image", parcelPictureAsFile) // posting any type of file
-            .addMultipartParameter("folder", "parcel")
-            .addMultipartParameter("subfolder", "CompanyName")
-            .addMultipartParameter("filename", System.currentTimeMillis().toString())
+            .addMultipartFile("image", file) // posting any type of file
+            .addMultipartParameter("folderName", "parcel")
+            .addMultipartParameter("subFolderName", "CompanyName")//TODO company name bosbe
+            .addMultipartParameter("fileName", System.currentTimeMillis().toString())
             .setPriority(Priority.MEDIUM)
             .build()
             .getAsJSONObject(object : JSONObjectRequestListener {
@@ -91,7 +112,7 @@ class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickRes
 
                     // handle error
 //                    fullScreenAlertDialog.dismissdialog()
-                    showToast( "Image Upload Problem wait some Time Later")
+                    showToast("Image Upload Problem wait some Time Later")
                     Log.e("TAG = ", "onError: " + error.errorBody)
                     Log.e("TAG = ", "onError: " + error.message)
                     Log.e("TAG = ", "onError: $error")
@@ -126,11 +147,19 @@ class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickRes
     }
 
     override fun onPickResult(r: PickResult?) {
-        if (r!!.error == null) {
-            dataBinding.userPhotoIV.setImageURI(r.uri)
-//            parcelPictureAsFile = File(r.uri.toString(), "${System.currentTimeMillis()}_${sharedPrefHelper.getString(KeyFrame.PHONE_NUMBER)}")
-            parcelPictureAsFile = File(r.uri.toString(), "${System.currentTimeMillis()}")
-            logThis("fileURI ${parcelPictureAsFile!!.toURI()}  &  fileName ${parcelPictureAsFile!!.name}")
-        } else Toast.makeText(this, r.error.message, Toast.LENGTH_LONG).show()
+        if (r?.error == null) {
+
+            dataBinding.userPhotoIV.setImageURI(null);
+
+            mFileUri = r?.uri.toString();
+            imageBitmap = r?.bitmap;
+
+            dataBinding.userPhotoIV.setImageURI(r?.uri);
+
+        } else {
+
+            Toast.makeText(this, r.error.message, Toast.LENGTH_LONG).show();
+        }
+
     }
 }
