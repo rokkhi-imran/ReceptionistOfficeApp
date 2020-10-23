@@ -41,7 +41,7 @@ class ParcelDeliveredActivity : BaseActivity<ActivityParcelListBinding>(), Adapt
                 is ApiResponse.Success -> adapter.setListToAdapter(it.data.data as ArrayList<GetParcelsData>)
                 is ApiResponse.Progress -> showProgressBar(it.loading, dataBinding.progressBar)
                 is ApiResponse.Failure -> logThisWithToast(it.errorMessage.message)
-                is ApiResponse.ErrorCode -> logThis(it.errorCode.cause!!.message)
+                is ApiResponse.ErrorCode -> logThis(it.errorCode.toString())
             }
         })
     }

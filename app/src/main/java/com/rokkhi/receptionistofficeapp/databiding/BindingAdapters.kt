@@ -1,4 +1,4 @@
-package live.qtec.survey.databiding
+package com.rokkhi.receptionistofficeapp.databiding
 
 import android.view.View
 import android.view.ViewGroup
