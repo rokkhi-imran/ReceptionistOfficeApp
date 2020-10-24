@@ -4,13 +4,19 @@ import android.app.Activity
 import android.graphics.Color
 import android.text.Editable
 import android.util.Patterns
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.textfield.TextInputEditText
 import com.rokkhi.receptionistofficeapp.R
 import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
+import kotlinx.android.synthetic.main.done_alert.view.*
+import kotlinx.android.synthetic.main.employee_list_alert.view.*
 import timber.log.Timber
 
 object StaticFunction {
@@ -43,7 +49,7 @@ object StaticFunction {
     fun isvalidphone11(phoneno: String): Boolean {
         if (phoneno.isEmpty()) return false
         if (phoneno[0] != '0') return false
-        Timber.d( "isValidPhone: bb $phoneno ${phoneno.length}")
+        Timber.d("isValidPhone: bb $phoneno ${phoneno.length}")
         if (phoneno.length != 11) return false
         for (i in 0..10) {
             val xx = phoneno[i]
@@ -71,12 +77,25 @@ object StaticFunction {
     fun checkInputValidationEditText(editText: TextInputEditText, errorMessage: String): Boolean = !checkValidation(editText, editText.text, errorMessage)
 
 
-
-    fun accessPermission(code: String): Boolean = code==KeyFrame.RECEPTION_ROLE_CODE
+    fun accessPermission(code: String): Boolean = code == KeyFrame.RECEPTION_ROLE_CODE
     fun accessPermissionFailed(activityContext: Activity?) {
 
-        Toast.makeText(activityContext,"access permission not Found ",Toast.LENGTH_SHORT).show()
+        Toast.makeText(activityContext, "access permission not Found ", Toast.LENGTH_SHORT).show()
+    }
 
+    fun showSuccessAlert(activityContext: Activity?) {
+
+             var alertDialog = AlertDialog.Builder(activityContext!!).create()
+
+            val inflater = LayoutInflater.from(activityContext)
+            val convertView = inflater.inflate(R.layout.done_alert, null) as View
+
+        convertView.okay.setOnClickListener {
+            activityContext.finish()
+            alertDialog.dismiss()
+        }
+            alertDialog.setView(convertView)
+            alertDialog.show()
     }
 
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.AddParcelResponse
+import com.rokkhi.receptionistofficeapp.networkmodel.EmployeeListResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.UploadSingleImageResponse
 import java.io.File
 import javax.inject.Inject
@@ -19,5 +20,10 @@ class ParcelReceivedViewModel @Inject constructor(private var repo: ParcelReceiv
     override fun onCleared() {
         super.onCleared()
     }
+
+
+    fun getEmployeeList(requesterProfileId: Int, limit: String, pageId: String, companyId: Int, branchId: String, departmentId: String,
+                        employeeRoleCode: String, employeeId: String): LiveData<ApiResponse<EmployeeListResponse>> = repo.getEmployeeList(requesterProfileId, limit, pageId, companyId, branchId, departmentId, employeeRoleCode, employeeId)
+
 
 }

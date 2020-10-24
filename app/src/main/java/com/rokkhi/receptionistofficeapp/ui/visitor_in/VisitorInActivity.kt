@@ -88,29 +88,18 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult,
 
     private fun showEmployeeAlertDialog(){
 
-
         val alertDialog = AlertDialog.Builder(activityContext!!).create()
-
 
         val inflater = LayoutInflater.from(activityContext)
         val convertView = inflater.inflate(R.layout.employee_list_alert, null) as View
-
 
         convertView.recyclerView.layoutManager=LinearLayoutManager(this)
         convertView.recyclerView.setHasFixedSize(true)
         convertView.recyclerView.adapter = adapterEmployeeList
         adapterEmployeeList.setListToAdapter(emloyeData)
         adapterEmployeeList.setOnAdapterItemClickListener(this)
-
         alertDialog.setView(convertView)
-
-
         alertDialog.show()
-
-        showToast(emloyeData.size.toString())
-
-
-
 
     }
 

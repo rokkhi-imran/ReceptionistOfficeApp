@@ -12,7 +12,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mishu vai rocks"
+            android:text="Select a employee"
+
             android:textSize="@dimen/_25sdp"/>
 
         <androidx.recyclerview.widget.RecyclerView

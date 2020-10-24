@@ -6,6 +6,7 @@ import com.rokkhi.receptionistofficeapp.network.RokkhiApi
 import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.network.wrapper.NetworkBoundResource
 import com.rokkhi.receptionistofficeapp.networkmodel.AddParcelResponse
+import com.rokkhi.receptionistofficeapp.networkmodel.EmployeeListResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.UploadSingleImageResponse
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
@@ -39,6 +40,25 @@ class ParcelReceivedRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
             override fun createCall(): Single<UploadSingleImageResponse> = api.uploadSingle(image, folderName, subFolderName, fileName)
             override fun createDisposable(): CompositeDisposable = disposable
         }.asLiveData()
+    }
+
+    fun getEmployeeList(requesterProfileId: Int, limit: String, pageId: String, companyId: Int, branchId: String, departmentId: String, employeeRoleCode: String,
+                        employeeId: String): LiveData<ApiResponse<EmployeeListResponse>> {
+        val map = HashMap<String, Any>()
+        map["requesterProfileId"] = requesterProfileId
+        map["limit"] = limit
+        map["pageId"] = pageId
+        map["companyId"] =companyId
+        map["branchId"] =branchId
+        map["departmentId"] =departmentId
+        map["employeeRoleCode"] =employeeRoleCode
+        map["employeeId"] =employeeId
+
+        return object : NetworkBoundResource<EmployeeListResponse>() {
+            override fun createCall(): Single<EmployeeListResponse> = api.getEmployeeList(map)
+            override fun createDisposable(): CompositeDisposable = disposable
+        }.asLiveData()
+
     }
 
 }
