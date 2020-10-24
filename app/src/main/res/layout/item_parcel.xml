@@ -22,14 +22,15 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivParcel"
-                loadProfileImage='@{data.image}'
+                app:loadImage='@{data.image}'
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
+                android:src="@drawable/parcel_icon"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
                 android:padding="@dimen/_5sdp"
-                android:src="@drawable/male1"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

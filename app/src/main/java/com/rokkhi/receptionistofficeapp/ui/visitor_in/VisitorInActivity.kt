@@ -43,7 +43,11 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult,
     private lateinit var adapterEmployeeList: AdapterEmployeeList
 
 
-     var emloyeData :ArrayList<EmployeeListData> = ArrayList()
+     var emloyeListData :ArrayList<EmployeeListData> = ArrayList()
+    lateinit var employeeData: EmployeeListData
+
+    private lateinit var alertDialog:AlertDialog
+
 
     override fun layoutRes(): Int =R.layout.activity_visitor_in
 
@@ -77,7 +81,7 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult,
             "", "", ""
         ).observe(this, Observer {
             when (it) {
-                is ApiResponse.Success -> emloyeData = it.data.data as ArrayList<EmployeeListData>
+                is ApiResponse.Success -> emloyeListData = it.data.data as ArrayList<EmployeeListData>
                 is ApiResponse.Progress -> showProgressBar(it.loading, dataBinding.progressBar)
                 is ApiResponse.Failure -> logThisWithToast(it.errorMessage.message)
                 is ApiResponse.ErrorCode -> logThis(it.errorCode.toString())
@@ -88,7 +92,7 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult,
 
     private fun showEmployeeAlertDialog(){
 
-        val alertDialog = AlertDialog.Builder(activityContext!!).create()
+         alertDialog = AlertDialog.Builder(activityContext!!).create()
 
         val inflater = LayoutInflater.from(activityContext)
         val convertView = inflater.inflate(R.layout.employee_list_alert, null) as View
@@ -96,7 +100,7 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult,
         convertView.recyclerView.layoutManager=LinearLayoutManager(this)
         convertView.recyclerView.setHasFixedSize(true)
         convertView.recyclerView.adapter = adapterEmployeeList
-        adapterEmployeeList.setListToAdapter(emloyeData)
+        adapterEmployeeList.setListToAdapter(emloyeListData)
         adapterEmployeeList.setOnAdapterItemClickListener(this)
         alertDialog.setView(convertView)
         alertDialog.show()
@@ -192,13 +196,27 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult,
     private fun callApiToUploadData(imageLink: String) {
 
         viewModel.addVisitor(
-            0, "", "", sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(), dataBinding.userNameET.text.toString(), sharedPrefHelper.getString(KeyFrame.COMPANY_ID),
-            dataBinding.addressET.text.toString(), dataBinding.phoneNoET.text.toString(), "", dataBinding.puposeET.text.toString(), imageLink, imageLink,
-            sharedPrefHelper.getString(KeyFrame.BRANCH_ID).toInt(), sharedPrefHelper.getString(KeyFrame.DEPARTMENT_ID).toInt(), sharedPrefHelper.getString(KeyFrame.USER_ID).toInt(),
-            1, 1 //TODO responder id and associated employee should be changed
+            sharedPrefHelper.getString(KeyFrame.USER_ID).toInt(),
+            "",
+            "",
+            sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(),
+            dataBinding.userNameET.text.toString(),
+            sharedPrefHelper.getString(KeyFrame.COMPANY_ID),
+            dataBinding.addressET.text.toString(),
+            dataBinding.phoneNoET.text.toString(),
+            "",
+            dataBinding.puposeET.text.toString(),
+            imageLink,
+            imageLink,
+            sharedPrefHelper.getString(KeyFrame.BRANCH_ID).toInt(),
+            sharedPrefHelper.getString(KeyFrame.DEPARTMENT_ID).toInt(),
+            sharedPrefHelper.getString(KeyFrame.USER_ID).toInt(),
+            0,//TODO responder id ?
+            employeeData.id
+
         ).observe(this, Observer {
             when (it) {
-                is ApiResponse.Success -> showMessage("-----------------${it.data.status}---------------")
+                is ApiResponse.Success -> StaticFunction.showSuccessAlert(activityContext)
                 is ApiResponse.Progress -> showProgressBar(it.loading, dataBinding.progressBar)
                 is ApiResponse.Failure -> logThis(it.errorMessage.message)
                 is ApiResponse.ErrorCode -> logThis(it.errorCode.message)
@@ -226,7 +244,15 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult,
     }
     }
 
-    override fun onItemClick(employeeListData: EmployeeListData) {
-        showToast(employeeListData.address)
+    override fun onItemClick(employeeData: EmployeeListData) {
+
+        alertDialog.dismiss()
+
+        this.employeeData = employeeData
+
+        dataBinding.employeeET.setText(employeeData.name.toString())
+
+
+
     }
 }

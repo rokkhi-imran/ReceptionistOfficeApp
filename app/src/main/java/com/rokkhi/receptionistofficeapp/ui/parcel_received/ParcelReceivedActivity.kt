@@ -184,8 +184,12 @@ class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickRes
 
 
         viewModel.addParcel(
-            sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(), dataBinding.parcelNameET.text.toString(), dataBinding.parcelCompanyET.text.toString(),
-            imageLink, imageLink, employeeData.id,
+            sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(),
+            dataBinding.parcelNameET.text.toString(),
+            dataBinding.parcelCompanyET.text.toString(),
+            imageLink,
+            imageLink,
+            employeeData.id,
             sharedPrefHelper.getString(KeyFrame.USER_ID).toInt(),
             sharedPrefHelper.getString(KeyFrame.DEPARTMENT_ID).toInt(),
             sharedPrefHelper.getString(KeyFrame.BRANCH_ID).toInt()
