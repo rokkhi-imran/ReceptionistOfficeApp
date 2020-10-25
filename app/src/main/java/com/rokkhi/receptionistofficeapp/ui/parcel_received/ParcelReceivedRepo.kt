@@ -18,13 +18,24 @@ class ParcelReceivedRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
 
     private val disposable = CompositeDisposable()
 
-    fun addParcel(companyId: Int, name: String, company: String, image: String, thumbImage: String, associatedEmployee: Int, receptionistId: Int, departmentId: Int, branchId: Int): LiveData<ApiResponse<AddParcelResponse>> {
+    fun addParcel(
+        requesterProfileId: String, limit: String, pageId: String, companyId: Int, name: String,
+        company: String, image: String,
+        thumbImage: String,
+        associatedLoggedinDeviceId: String,
+        associatedEmployee: Int, receptionistId: Int,
+        departmentId: Int,
+        branchId: Int
+    ): LiveData<ApiResponse<AddParcelResponse>> {
         val map = HashMap<String, Any>()
+        map["requesterProfileId"] = requesterProfileId
+        map["limit"] = limit
+        map["pageId"] = pageId
         map["companyId"] = companyId
         map["name"] = name
         map["company"] = company
-        map["image"] = image
         map["thumbImage"] = thumbImage
+        map["associatedLoggedinDeviceId"] = associatedLoggedinDeviceId
         map["associatedEmployee"] = associatedEmployee
         map["receptionistId"] = receptionistId
         map["departmentId"] = departmentId
@@ -42,17 +53,19 @@ class ParcelReceivedRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
         }.asLiveData()
     }
 
-    fun getEmployeeList(requesterProfileId: Int, limit: String, pageId: String, companyId: Int, branchId: String, departmentId: String, employeeRoleCode: String,
-                        employeeId: String): LiveData<ApiResponse<EmployeeListResponse>> {
+    fun getEmployeeList(
+        requesterProfileId: Int, limit: String, pageId: String, companyId: Int, branchId: String, departmentId: String, employeeRoleCode: String,
+        employeeId: String
+    ): LiveData<ApiResponse<EmployeeListResponse>> {
         val map = HashMap<String, Any>()
         map["requesterProfileId"] = requesterProfileId
         map["limit"] = limit
         map["pageId"] = pageId
-        map["companyId"] =companyId
-        map["branchId"] =branchId
-        map["departmentId"] =departmentId
-        map["employeeRoleCode"] =employeeRoleCode
-        map["employeeId"] =employeeId
+        map["companyId"] = companyId
+        map["branchId"] = branchId
+        map["departmentId"] = departmentId
+        map["employeeRoleCode"] = employeeRoleCode
+        map["employeeId"] = employeeId
 
         return object : NetworkBoundResource<EmployeeListResponse>() {
             override fun createCall(): Single<EmployeeListResponse> = api.getEmployeeList(map)

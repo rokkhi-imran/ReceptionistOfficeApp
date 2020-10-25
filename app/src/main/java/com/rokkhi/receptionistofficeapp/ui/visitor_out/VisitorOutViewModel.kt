@@ -5,18 +5,47 @@ import androidx.lifecycle.ViewModel
 import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.ChangeVisitorStatusResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.GetVisitorsResponse
-import com.rokkhi.receptionistofficeapp.statics.VisitorStatus
 import javax.inject.Inject
 
 class VisitorOutViewModel @Inject constructor(private val repo: VisitorOutRepo) : ViewModel() {
 
-    fun getVisitors(): LiveData<ApiResponse<GetVisitorsResponse>> = repo.getVisitors()
+    fun getVisitors(
+        requesterProfileId: Int,
+        limit: String,
+        pageId: String,
+        companyId: Int,
+        departmentId: Int,
+        branchId: Int,
+        status: String,
+        fromDate: String,
+        toDate: String
+    ): LiveData<ApiResponse<GetVisitorsResponse>> = repo.getVisitors(
+        requesterProfileId, limit, pageId, companyId,
+        departmentId, branchId, status, fromDate,
+        toDate
+    )
 
-    fun changeVisitorOutStatus(visitorId: Int, newStatus: VisitorStatus): LiveData<ApiResponse<ChangeVisitorStatusResponse>> = repo.changeVisitorStatus(visitorId, newStatus)
+    fun changeVisitorOutStatus(requesterProfileId: Int,
+                               limit: String,
+                               pageId: String,
+                               companyId: Int,
+                               visitorId: Int,
+                               newStatus: String,
+                               associatedLoggedinDeviceId: String,
+    ): LiveData<ApiResponse<ChangeVisitorStatusResponse>> = repo.changeVisitorStatus(
+        requesterProfileId,
+        limit,
+        pageId,
+        companyId,
+        visitorId,
+        newStatus,
+        associatedLoggedinDeviceId)
 
     override fun onCleared() {
         super.onCleared()
         repo.onCleared()
     }
+
+
 
 }

@@ -184,15 +184,19 @@ class ParcelReceivedActivity : BaseActivity<ActivityParcelInBinding>(), IPickRes
 
 
         viewModel.addParcel(
-            sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(),
-            dataBinding.parcelNameET.text.toString(),
-            dataBinding.parcelCompanyET.text.toString(),
-            imageLink,
-            imageLink,
-            employeeData.id,
-            sharedPrefHelper.getString(KeyFrame.USER_ID).toInt(),
-            sharedPrefHelper.getString(KeyFrame.DEPARTMENT_ID).toInt(),
-            sharedPrefHelper.getString(KeyFrame.BRANCH_ID).toInt()
+            requesterProfileId = "",
+            limit = "",
+            pageId = "",
+            companyId = sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(),
+            name = dataBinding.parcelNameET.text.toString(),
+            company = dataBinding.parcelCompanyET.text.toString(),
+            image = imageLink,
+            thumbImage = imageLink,
+            associatedEmployee = 0,
+            associatedLoggedinDeviceId = sharedPrefHelper.getString(KeyFrame.USER_ID),
+            receptionistId = 0,
+            departmentId = sharedPrefHelper.getString(KeyFrame.DEPARTMENT_ID).toInt(),
+            branchId = sharedPrefHelper.getString(KeyFrame.BRANCH_ID).toInt()
         ).observe(this, Observer {
             when (it) {
                 is ApiResponse.Success -> StaticFunction.showSuccessAlert(activityContext)

@@ -1,6 +1,7 @@
 package com.rokkhi.receptionistofficeapp.ui.visitor_out
 
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,7 +10,8 @@ import com.rokkhi.receptionistofficeapp.base.BaseActivity
 import com.rokkhi.receptionistofficeapp.databinding.ActivityVisitorListBinding
 import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.GetVisitorsData
-import com.rokkhi.receptionistofficeapp.statics.VisitorStatus
+import com.rokkhi.receptionistofficeapp.util.KeyFrame
+import com.rokkhi.receptionistofficeapp.util.StaticFunction
 
 class VisitorOutActivity : BaseActivity<ActivityVisitorListBinding>(), AdapterVisitorOut.OnAdapterItemClickListener {
 
@@ -27,19 +29,43 @@ class VisitorOutActivity : BaseActivity<ActivityVisitorListBinding>(), AdapterVi
     }
 
     override fun onItemClick(visitorData: GetVisitorsData) {
-        logThisWithToast("visitorID: ${visitorData.id} & status: ${visitorData.status}")
-        if (visitorData.status == "OUT") changeVisitorsStatus(visitorData.id, VisitorStatus.IN)
-        if (visitorData.status == "IN") changeVisitorsStatus(visitorData.id, VisitorStatus.OUT)
+
+        val builder = simpleAlertDialogBuilder("Exit Alert !", "Do you want Exit This User ?", true)
+        builder.setPositiveButton("Yes") { dialog, _ ->
+
+      changeVisitorsStatus(visitorData)
+
+
+            dialog.dismiss()
+        }
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
+
     }
 
-    private fun changeVisitorsStatus(visitorID: Int, statusMessage: VisitorStatus) {
-        viewModel.changeVisitorOutStatus(visitorID, statusMessage).observe(this, Observer {
+    private fun simpleAlertDialogBuilder(title: String, body: String, cancelable: Boolean): AlertDialog.Builder = AlertDialog.Builder(activityContext!!).setTitle(title).setMessage(body).setCancelable(cancelable)
+
+
+    private fun changeVisitorsStatus(visitorID: GetVisitorsData) {
+
+
+        viewModel.changeVisitorOutStatus(
+            requesterProfileId = 0,
+            limit = "",
+            pageId = "",
+            companyId = sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(),
+            visitorId = visitorID.id,
+            newStatus = KeyFrame.KEY_VISITOR_OUTSIDE,
+            associatedLoggedinDeviceId = sharedPrefHelper.getString(KeyFrame.USER_ID)
+        ).observe(this, Observer {
             when (it) {
                 is ApiResponse.Success -> {
                     showMessage(it.data.status)
                     getVisitorsListDataFromServer()
                 }
-                is ApiResponse.Progress -> showProgressBar(it.loading, dataBinding.progressBar)
+                is ApiResponse.Progress -> StaticFunction.showSuccessAlert(activityContext)
                 is ApiResponse.Failure -> logThisWithToast(it.errorMessage.message)
                 is ApiResponse.ErrorCode -> logThis(it.errorCode.toString())
             }
@@ -47,7 +73,17 @@ class VisitorOutActivity : BaseActivity<ActivityVisitorListBinding>(), AdapterVi
     }
 
     private fun getVisitorsListDataFromServer() {
-        viewModel.getVisitors().observe(this, Observer {
+
+        viewModel.getVisitors(
+            requesterProfileId = 0,
+            limit = "",
+            pageId = "",
+            companyId = sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(),
+            departmentId = sharedPrefHelper.getString(KeyFrame.DEPARTMENT_ID).toInt(),
+            branchId = sharedPrefHelper.getString(KeyFrame.BRANCH_ID).toInt(),
+            status = KeyFrame.KEY_VISITOR_INSIDE,
+            fromDate = "",
+            toDate = "").observe(this, Observer {
             when (it) {
                 is ApiResponse.Success -> adapter.setListToAdapter(it.data.data)
                 is ApiResponse.Progress -> showProgressBar(it.loading, dataBinding.progressBar)
@@ -64,4 +100,7 @@ class VisitorOutActivity : BaseActivity<ActivityVisitorListBinding>(), AdapterVi
         dataBinding.recyclerview.adapter = adapter
         adapter.setOnAdapterItemClickListener(this)
     }
+
+
+
 }

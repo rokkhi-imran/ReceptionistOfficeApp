@@ -16,17 +16,29 @@ class ParcelDeliveredRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) 
 
     private val disposable = CompositeDisposable()
 
-    fun getParcels(companyId: Int): LiveData<ApiResponse<GetParcelsResponse>> {
+    fun getParcels(requesterProfileId: Int , limit: String ,pageId: String ,companyId: Int ,
+                   departmentId: Int ,branchId: Int ,fromDate: String ,toDate: String): LiveData<ApiResponse<GetParcelsResponse>> {
         val map = HashMap<String, Any>()
+        map["requesterProfileId"] = requesterProfileId
+        map["limit"] = limit
+        map["pageId"] = pageId
         map["companyId"] = companyId
+        map["departmentId"] = departmentId
+        map["branchId"] = branchId
+        map["fromDate"] = fromDate
+        map["toDate"] = toDate
         return object : NetworkBoundResource<GetParcelsResponse>() {
             override fun createCall(): Single<GetParcelsResponse> = api.getParcels(map)
             override fun createDisposable(): CompositeDisposable = disposable
         }.asLiveData()
     }
 
-    fun markParcelAsReceived(parcelId: Int): LiveData<ApiResponse<ParcelReceivedResponse>> {
+    fun markParcelAsReceived(requesterProfileId: String, limit: String, pageId: String, companyId: String, parcelId: String): LiveData<ApiResponse<ParcelReceivedResponse>> {
         val map = HashMap<String, Any>()
+        map["requesterProfileId"] = requesterProfileId
+        map["limit"] = limit
+        map["pageId"] = pageId
+        map["companyId"] = companyId
         map["parcelId"] = parcelId
         return object : NetworkBoundResource<ParcelReceivedResponse>() {
             override fun createCall(): Single<ParcelReceivedResponse> = api.markParcelAsReceived(map)

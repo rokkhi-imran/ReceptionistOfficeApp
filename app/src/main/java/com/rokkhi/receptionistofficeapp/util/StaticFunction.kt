@@ -10,13 +10,11 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.textfield.TextInputEditText
 import com.rokkhi.receptionistofficeapp.R
 import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
 import kotlinx.android.synthetic.main.done_alert.view.*
-import kotlinx.android.synthetic.main.employee_list_alert.view.*
 import timber.log.Timber
 
 object StaticFunction {
@@ -85,17 +83,18 @@ object StaticFunction {
 
     fun showSuccessAlert(activityContext: Activity?) {
 
-             var alertDialog = AlertDialog.Builder(activityContext!!).create()
+        var alertDialog = AlertDialog.Builder(activityContext!!).create()
 
-            val inflater = LayoutInflater.from(activityContext)
-            val convertView = inflater.inflate(R.layout.done_alert, null) as View
+        val inflater = LayoutInflater.from(activityContext)
+        val convertView = inflater.inflate(R.layout.done_alert, null) as View
 
+        alertDialog.setCancelable(false)
         convertView.okay.setOnClickListener {
             activityContext.finish()
             alertDialog.dismiss()
         }
-            alertDialog.setView(convertView)
-            alertDialog.show()
+        alertDialog.setView(convertView)
+        alertDialog.show()
     }
 
 }

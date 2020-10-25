@@ -28,7 +28,8 @@ interface RokkhiApi {
     fun addParcel(@Body data: Map<String, Any>): Single<AddParcelResponse>
 
     @POST("/api/v1/entrance/getVisitors")
-    fun getVisitors(): Single<GetVisitorsResponse>
+    @JvmSuppressWildcards
+    fun getVisitors(@Body data: Map<String, Any>): Single<GetVisitorsResponse>
 
     @POST("/api/v1/entrance/getParcels")
     @JvmSuppressWildcards
@@ -40,6 +41,7 @@ interface RokkhiApi {
 
     // parcel received
     @POST("/api/v1/entrance/markParcelAsReceived")
+    @JvmSuppressWildcards
     fun markParcelAsReceived(@Body data: Map<String, Any>): Single<ParcelReceivedResponse>
 
     // upload single image
@@ -51,6 +53,7 @@ interface RokkhiApi {
 
     // upload single image
     @POST("/api/v1/entrance/recordEmployeeEntry")
+    @JvmSuppressWildcards
     fun recordEmployeeEntry(@Body data: Map<String, Any>): Single<EmployeeEntryChangeResponse>
 
     @POST("/api/v1/employee/getList")

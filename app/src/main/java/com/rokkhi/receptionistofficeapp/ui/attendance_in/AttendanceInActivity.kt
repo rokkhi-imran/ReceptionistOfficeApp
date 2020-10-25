@@ -1,6 +1,5 @@
 package com.rokkhi.receptionistofficeapp.ui.attendance_in
 
-import android.animation.Keyframe
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
@@ -14,20 +13,19 @@ import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.EmployeeListData
 import com.rokkhi.receptionistofficeapp.util.KeyFrame
 import com.rokkhi.receptionistofficeapp.util.StaticFunction
-import kotlinx.android.synthetic.main.employee_list_alert.view.*
 
-class AttendanceInActivity : BaseActivity<ActivityAttendanceBinding>(),AdapterEmployeeList.OnAdapterItemClickListener {
+class AttendanceInActivity : BaseActivity<ActivityAttendanceBinding>(), AdapterEmployeeList.OnAdapterItemClickListener {
     lateinit var viewModel: AttendanceInViewModel
     private lateinit var adapterEmployeeList: AdapterEmployeeList
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dataBinding.lifecycleOwner=this
-        viewModel=ViewModelProvider(this,viewModelFactory).get(AttendanceInViewModel::class.java)
+        dataBinding.lifecycleOwner = this
+        viewModel = ViewModelProvider(this, viewModelFactory).get(AttendanceInViewModel::class.java)
 
         adapterEmployeeList = AdapterEmployeeList()
-        dataBinding.recyclerview.layoutManager= LinearLayoutManager(this)
+        dataBinding.recyclerview.layoutManager = LinearLayoutManager(this)
         dataBinding.recyclerview.setHasFixedSize(true)
         dataBinding.recyclerview.adapter = adapterEmployeeList
         adapterEmployeeList.setOnAdapterItemClickListener(this)
@@ -47,26 +45,25 @@ class AttendanceInActivity : BaseActivity<ActivityAttendanceBinding>(),AdapterEm
         })
 
 
-
     }
 
-    override fun layoutRes(): Int =R.layout.activity_attendance;
+    override fun layoutRes(): Int = R.layout.activity_attendance;
 
     override fun onItemClick(employeeData: EmployeeListData) {
 
         val builder = simpleAlertDialogBuilder("Entry Alert !", "Do you want Entry This User ?", true)
         builder.setPositiveButton("Yes") { dialog, _ ->
 
-            viewModel.recordEmployeeAttendanceList(
-                sharedPrefHelper.getString(KeyFrame.USER_ID).toInt(),
-                "",
-                "",
+            viewModel.recordEmployeeAttendanceIn(
+                requesterProfileId = employeeData.id.toInt(),
+                limit = "",
+                pageId = "",
                 sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(),
                 employeeId = employeeData.id.toString(),
                 departmentId = employeeData.department.id.toString(),
                 branchId = employeeData.branch.id.toString(),
-                receptionistId = sharedPrefHelper.getString(KeyFrame.USER_ID),
-                "",
+                receptionistId = "",//Receptionist EmployeeID
+                employeeData.id.toString(),
                 status = KeyFrame.KEY_INSIDE,
                 sharedPrefHelper.getString(KeyFrame.USER_ID)
 
@@ -88,8 +85,8 @@ class AttendanceInActivity : BaseActivity<ActivityAttendanceBinding>(),AdapterEm
         builder.show()
 
     }
-    private fun simpleAlertDialogBuilder(title: String, body: String, cancelable: Boolean): AlertDialog.Builder = AlertDialog.Builder(activityContext!!).setTitle(title).setMessage(body).setCancelable(cancelable)
 
+    private fun simpleAlertDialogBuilder(title: String, body: String, cancelable: Boolean): AlertDialog.Builder = AlertDialog.Builder(activityContext!!).setTitle(title).setMessage(body).setCancelable(cancelable)
 
 
 }

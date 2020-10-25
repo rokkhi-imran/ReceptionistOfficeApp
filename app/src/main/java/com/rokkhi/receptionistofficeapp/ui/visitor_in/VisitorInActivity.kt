@@ -33,7 +33,7 @@ import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.io.File
 
-class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult,AdapterEmployeeList.OnAdapterItemClickListener{
+class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>(), IPickResult, AdapterEmployeeList.OnAdapterItemClickListener {
 
     lateinit var viewModel: VisitorInViewModel
 
@@ -43,19 +43,19 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult,
     private lateinit var adapterEmployeeList: AdapterEmployeeList
 
 
-     var emloyeListData :ArrayList<EmployeeListData> = ArrayList()
+    var emloyeListData: ArrayList<EmployeeListData> = ArrayList()
     lateinit var employeeData: EmployeeListData
 
-    private lateinit var alertDialog:AlertDialog
+    private lateinit var alertDialog: AlertDialog
 
 
-    override fun layoutRes(): Int =R.layout.activity_visitor_in
+    override fun layoutRes(): Int = R.layout.activity_visitor_in
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       dataBinding.lifecycleOwner=this
-        viewModel= ViewModelProvider(this, viewModelFactory).get(VisitorInViewModel::class.java)
+        dataBinding.lifecycleOwner = this
+        viewModel = ViewModelProvider(this, viewModelFactory).get(VisitorInViewModel::class.java)
 
 
         adapterEmployeeList = AdapterEmployeeList()
@@ -90,14 +90,14 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult,
 
     }
 
-    private fun showEmployeeAlertDialog(){
+    private fun showEmployeeAlertDialog() {
 
-         alertDialog = AlertDialog.Builder(activityContext!!).create()
+        alertDialog = AlertDialog.Builder(activityContext!!).create()
 
         val inflater = LayoutInflater.from(activityContext)
         val convertView = inflater.inflate(R.layout.employee_list_alert, null) as View
 
-        convertView.recyclerView.layoutManager=LinearLayoutManager(this)
+        convertView.recyclerView.layoutManager = LinearLayoutManager(this)
         convertView.recyclerView.setHasFixedSize(true)
         convertView.recyclerView.adapter = adapterEmployeeList
         adapterEmployeeList.setListToAdapter(emloyeListData)
@@ -125,16 +125,15 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult,
             return
         }
 
-        if (imageBitmap!=null){
+        if (imageBitmap != null) {
             imageUploadApi(imageBitmap!!)
-        }else{
+        } else {
 
-              callApiToUploadData("")
+            callApiToUploadData("")
         }
 
 
     }
-
 
 
     private fun imageUploadApi(imageBitmap: Bitmap?) {
@@ -196,23 +195,24 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult,
     private fun callApiToUploadData(imageLink: String) {
 
         viewModel.addVisitor(
-            sharedPrefHelper.getString(KeyFrame.USER_ID).toInt(),
-            "",
-            "",
-            sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(),
-            dataBinding.userNameET.text.toString(),
-            sharedPrefHelper.getString(KeyFrame.COMPANY_ID),
-            dataBinding.addressET.text.toString(),
-            dataBinding.phoneNoET.text.toString(),
-            "",
-            dataBinding.puposeET.text.toString(),
-            imageLink,
-            imageLink,
-            sharedPrefHelper.getString(KeyFrame.BRANCH_ID).toInt(),
-            sharedPrefHelper.getString(KeyFrame.DEPARTMENT_ID).toInt(),
-            sharedPrefHelper.getString(KeyFrame.USER_ID).toInt(),
-            0,//TODO responder id ?
-            employeeData.id
+            requesterProfileId = sharedPrefHelper.getString(KeyFrame.USER_ID).toInt(),
+            limit = "",
+            pageId = "",
+            companyId = sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(),
+            name = dataBinding.userNameET.text.toString(),
+            company = sharedPrefHelper.getString(KeyFrame.COMPANY_ID),
+            address = dataBinding.addressET.text.toString(),
+            contact = dataBinding.phoneNoET.text.toString(),
+            email = "",
+            purpose = dataBinding.puposeET.text.toString(),
+            image = imageLink,
+            thumbImage = imageLink,
+            branchId = sharedPrefHelper.getString(KeyFrame.BRANCH_ID).toInt(),
+            departmentId = sharedPrefHelper.getString(KeyFrame.DEPARTMENT_ID).toInt(),
+            receptionistId = 0,//receptionist employee id
+            responderId = employeeData.id,//TODO responder id ?
+            associatedLoggedinDeviceId =  sharedPrefHelper.getString(KeyFrame.USER_ID),
+            associatedEmployee = employeeData.id
 
         ).observe(this, Observer {
             when (it) {
@@ -226,22 +226,23 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult,
     }
 
 
-    override fun onPickResult(r: PickResult?) {  if (r!!.error == null) {
-        if (r?.error == null) {
+    override fun onPickResult(r: PickResult?) {
+        if (r!!.error == null) {
+            if (r?.error == null) {
 
-            dataBinding.userPhotoIV.setImageURI(null);
+                dataBinding.userPhotoIV.setImageURI(null);
 
-            mFileUri = r?.uri.toString();
-            imageBitmap = r?.bitmap;
+                mFileUri = r?.uri.toString();
+                imageBitmap = r?.bitmap;
 
-            dataBinding.userPhotoIV.setImageURI(r?.uri);
+                dataBinding.userPhotoIV.setImageURI(r?.uri);
 
-        } else {
+            } else {
 
-            Toast.makeText(this, r.error.message, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, r.error.message, Toast.LENGTH_LONG).show();
+            }
+
         }
-
-    }
     }
 
     override fun onItemClick(employeeData: EmployeeListData) {
@@ -251,7 +252,6 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>() ,IPickResult,
         this.employeeData = employeeData
 
         dataBinding.employeeET.setText(employeeData.name.toString())
-
 
 
     }

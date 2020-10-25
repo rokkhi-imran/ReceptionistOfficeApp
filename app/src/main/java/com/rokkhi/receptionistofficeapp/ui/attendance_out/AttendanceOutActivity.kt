@@ -1,6 +1,5 @@
 package com.rokkhi.receptionistofficeapp.ui.attendance_out
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
@@ -13,10 +12,9 @@ import com.rokkhi.receptionistofficeapp.databinding.ActivityAttendanceOutBinding
 import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.EmployeeListData
 import com.rokkhi.receptionistofficeapp.util.KeyFrame
-import com.rokkhi.receptionistofficeapp.util.ScreenNavigator
 import com.rokkhi.receptionistofficeapp.util.StaticFunction
 
-class AttendanceOutActivity : BaseActivity<ActivityAttendanceOutBinding>(),AdapterEmployeeList.OnAdapterItemClickListener {
+class AttendanceOutActivity : BaseActivity<ActivityAttendanceOutBinding>(), AdapterEmployeeList.OnAdapterItemClickListener {
 
     lateinit var viewModel: AttendanceOutViewModel
 
@@ -27,13 +25,13 @@ class AttendanceOutActivity : BaseActivity<ActivityAttendanceOutBinding>(),Adapt
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        dataBinding.lifecycleOwner=this
-        viewModel=ViewModelProvider(this,viewModelFactory).get(AttendanceOutViewModel::class.java)
+        dataBinding.lifecycleOwner = this
+        viewModel = ViewModelProvider(this, viewModelFactory).get(AttendanceOutViewModel::class.java)
 
 
 
         adapterEmployeeList = AdapterEmployeeList()
-        dataBinding.recyclerview.layoutManager= LinearLayoutManager(this)
+        dataBinding.recyclerview.layoutManager = LinearLayoutManager(this)
         dataBinding.recyclerview.setHasFixedSize(true)
         dataBinding.recyclerview.adapter = adapterEmployeeList
         adapterEmployeeList.setOnAdapterItemClickListener(this)
@@ -54,26 +52,26 @@ class AttendanceOutActivity : BaseActivity<ActivityAttendanceOutBinding>(),Adapt
 
     }
 
-    override fun layoutRes(): Int =R.layout.activity_attendance_out
+    override fun layoutRes(): Int = R.layout.activity_attendance_out
 
 
     override fun onItemClick(employeeData: EmployeeListData) {
 
-        val builder = simpleAlertDialogBuilder("Entry Alert !", "Do you want Entry This User ?", true)
+        val builder = simpleAlertDialogBuilder("Exit Alert !", "Do you want Exit This User ?", true)
         builder.setPositiveButton("Yes") { dialog, _ ->
 
-            viewModel.recordEmployeeAttendanceList(
-                sharedPrefHelper.getString(KeyFrame.USER_ID).toInt(),
-                "",
-                "",
-                sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(),
+            viewModel.recordEmployeeAttendanceOut(
+                requesterProfileId = employeeData.id.toInt(),
+                limit = "",
+                pageId = "",
+                companyId = sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(),
                 employeeId = employeeData.id.toString(),
                 departmentId = employeeData.department.id.toString(),
                 branchId = employeeData.branch.id.toString(),
-                receptionistId = sharedPrefHelper.getString(KeyFrame.USER_ID),
-                "",
+                receptionistId = "",//Receptionist EmployeeID
+                acknowledgedBy = employeeData.id.toString(),
                 status = KeyFrame.KEY_OUTSIDE,
-                sharedPrefHelper.getString(KeyFrame.USER_ID)
+                associatedLoggedinDeviceId = sharedPrefHelper.getString(KeyFrame.USER_ID)
 
             ).observe(this, Observer {
                 when (it) {
@@ -93,6 +91,7 @@ class AttendanceOutActivity : BaseActivity<ActivityAttendanceOutBinding>(),Adapt
         builder.show()
 
     }
+
     private fun simpleAlertDialogBuilder(title: String, body: String, cancelable: Boolean): AlertDialog.Builder = AlertDialog.Builder(activityContext!!).setTitle(title).setMessage(body).setCancelable(cancelable)
 
 

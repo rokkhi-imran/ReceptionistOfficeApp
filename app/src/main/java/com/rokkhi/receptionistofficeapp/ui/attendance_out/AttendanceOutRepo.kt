@@ -5,7 +5,7 @@ import com.rokkhi.receptionistofficeapp.di.RokkhiApiUrl
 import com.rokkhi.receptionistofficeapp.network.RokkhiApi
 import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.network.wrapper.NetworkBoundResource
-import com.rokkhi.receptionistofficeapp.networkmodel.AddVisitorResponse
+import com.rokkhi.receptionistofficeapp.networkmodel.EmployeeEntryChangeResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.EmployeeListResponse
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
@@ -35,14 +35,14 @@ class AttendanceOutRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
 
     }
 
-    fun recordEmployeeAttendanceList(requesterProfileId: Int, limit: String, pageId: String, companyId: Int,
+    fun recordEmployeeAttendanceOut(requesterProfileId: Int, limit: String, pageId: String, companyId: Int,
                                      employeeId: String,
                                      departmentId: String,
                                      branchId: String,
                                      receptionistId: String,
                                      acknowledgedBy: String,
                                      status: String,
-                                     associatedLoggedinDeviceId: String): LiveData<ApiResponse<EmployeeListResponse>> {
+                                     associatedLoggedinDeviceId: String): LiveData<ApiResponse<EmployeeEntryChangeResponse>> {
         val map = HashMap<String, Any>()
         map["requesterProfileId"] = requesterProfileId
         map["limit"] = limit
@@ -56,8 +56,8 @@ class AttendanceOutRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
         map["status"] =status
         map["associatedLoggedinDeviceId"] =associatedLoggedinDeviceId
 
-        return object : NetworkBoundResource<EmployeeListResponse>() {
-            override fun createCall(): Single<EmployeeListResponse> = api.getEmployeeList(map)
+        return object : NetworkBoundResource<EmployeeEntryChangeResponse>() {
+            override fun createCall(): Single<EmployeeEntryChangeResponse> = api.recordEmployeeEntry(map)
             override fun createDisposable(): CompositeDisposable = disposable
         }.asLiveData()
 

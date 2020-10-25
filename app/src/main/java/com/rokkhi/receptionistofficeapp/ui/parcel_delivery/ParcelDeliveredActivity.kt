@@ -10,6 +10,7 @@ import com.rokkhi.receptionistofficeapp.databinding.ActivityParcelListBinding
 import com.rokkhi.receptionistofficeapp.network.wrapper.ApiResponse
 import com.rokkhi.receptionistofficeapp.networkmodel.GetParcelsData
 import com.rokkhi.receptionistofficeapp.util.KeyFrame
+import com.rokkhi.receptionistofficeapp.util.StaticFunction
 
 class ParcelDeliveredActivity : BaseActivity<ActivityParcelListBinding>(), AdapterParcelDelivered.OnAdapterItemClickListener {
 
@@ -22,7 +23,7 @@ class ParcelDeliveredActivity : BaseActivity<ActivityParcelListBinding>(), Adapt
         dataBinding.lifecycleOwner = this
         viewModel = ViewModelProvider(this, viewModelFactory).get(ParcelDeliveryViewModel::class.java)
         createAdapter()
-        getParcelDataFromServer(sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt())
+        getParcelDataFromServer()
     }
 
 
@@ -33,11 +34,43 @@ class ParcelDeliveredActivity : BaseActivity<ActivityParcelListBinding>(), Adapt
 
     //these are click listener as example/test [adapter interface]
     override fun onButtonClick(parcelsData: GetParcelsData) {
-        showMessage("Parcel Status = ${parcelsData.status}")
+
+        markAsDeliveredParcel(parcelsData)
+
     }
 
-    private fun getParcelDataFromServer(companyID: Int) {
-        viewModel.getParcels(companyID).observe(this, Observer {
+    private fun markAsDeliveredParcel(parcelsData: GetParcelsData) {
+
+
+        viewModel.markParcelAsReceived(
+            requesterProfileId = "",
+            limit = "",
+            pageId = "",
+            companyId = sharedPrefHelper.getString(KeyFrame.COMPANY_ID),
+            parcelId = parcelsData.id.toString()
+        ).observe(this, Observer {
+            when (it) {
+                is ApiResponse.Success -> StaticFunction.showSuccessAlert(activityContext)
+                is ApiResponse.Progress -> showProgressBar(it.loading, dataBinding.progressBar)
+                is ApiResponse.Failure -> logThisWithToast(it.errorMessage.message)
+                is ApiResponse.ErrorCode -> logThis(it.errorCode.toString())
+            }
+        })
+
+
+    }
+
+    private fun getParcelDataFromServer() {
+        viewModel.getParcels(
+            requesterProfileId = 0,
+            limit = "",
+            pageId = "",
+            companyId = sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(),
+            departmentId = sharedPrefHelper.getString(KeyFrame.DEPARTMENT_ID).toInt(),
+            branchId = sharedPrefHelper.getString(KeyFrame.BRANCH_ID).toInt(),
+            fromDate = "",
+            toDate = ""
+        ).observe(this, Observer {
             when (it) {
                 is ApiResponse.Success -> adapter.setListToAdapter(it.data.data as ArrayList<GetParcelsData>)
                 is ApiResponse.Progress -> showProgressBar(it.loading, dataBinding.progressBar)

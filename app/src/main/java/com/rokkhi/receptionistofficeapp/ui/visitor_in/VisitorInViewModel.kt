@@ -10,8 +10,11 @@ import javax.inject.Inject
 class VisitorInViewModel @Inject constructor(private var repo: VisitorInRepo) : ViewModel() {
 
 
-    fun addVisitor(requesterProfileId: Int,limit: String,pageId: String,companyId: Int, name: String, company: String, address: String,contact: String,email: String, purpose: String, image: String, thumbImage: String, branchId: Int, departmentId: Int, receptionistId: Int,responderId: Int,  associatedEmployee: Int): LiveData<ApiResponse<AddVisitorResponse>>
-            = repo.addVisitor(requesterProfileId,limit,pageId,companyId, name, company, address,contact ,email, purpose, image, thumbImage, branchId, departmentId, receptionistId,responderId,  associatedEmployee)
+    fun addVisitor(requesterProfileId: Int,limit: String,pageId: String,companyId: Int, name: String, company: String, address: String,
+                   contact: String,email: String, purpose: String, image: String, thumbImage: String, branchId: Int, departmentId: Int,
+                   receptionistId: Int,responderId: Int,   associatedLoggedinDeviceId: String,associatedEmployee: Int): LiveData<ApiResponse<AddVisitorResponse>>
+            = repo.addVisitor(requesterProfileId,limit,pageId,companyId, name, company, address,contact ,email, purpose,
+        image, thumbImage, branchId, departmentId, receptionistId,responderId, associatedLoggedinDeviceId, associatedEmployee)
 
 
     override fun onCleared() {

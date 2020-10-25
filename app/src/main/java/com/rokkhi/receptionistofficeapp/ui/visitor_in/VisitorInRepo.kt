@@ -17,7 +17,7 @@ class VisitorInRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
     private val disposable = CompositeDisposable()
 
     fun addVisitor(requesterProfileId: Int,limit: String,pageId: String,companyId: Int, name: String, company: String, address: String,contact: String,email: String, purpose: String, image: String, thumbImage: String, branchId: Int,
-                   departmentId: Int, receptionistId: Int,responderId: Int,  associatedEmployee: Int): LiveData<ApiResponse<AddVisitorResponse>> {
+                   departmentId: Int, receptionistId: Int,responderId: Int,associatedLoggedinDeviceId: String,  associatedEmployee: Int): LiveData<ApiResponse<AddVisitorResponse>> {
         val map = HashMap<String, Any>()
         map["requesterProfileId"] = requesterProfileId
         map["limit"] = limit
@@ -36,6 +36,7 @@ class VisitorInRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
         map["departmentId"] = departmentId
         map["receptionistId"] = receptionistId
         map["responderId"] = responderId
+        map["associatedLoggedinDeviceId"] = associatedLoggedinDeviceId
         map["associatedEmployee"] = associatedEmployee
         return object : NetworkBoundResource<AddVisitorResponse>() {
             override fun createCall(): Single<AddVisitorResponse> = api.addVisitor(map)

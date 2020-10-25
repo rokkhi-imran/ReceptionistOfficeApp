@@ -6,6 +6,8 @@ object KeyFrame {
 
     // private const server key
     const val KEY_INSIDE = "INSIDE"
+    const val KEY_VISITOR_INSIDE = "INSIDE_COMPOUND"
+    const val KEY_VISITOR_OUTSIDE = "OUTSIDE_COMPOUND"
     const val KEY_OUTSIDE = "OUTSIDE"
     const val KEY_PARCEL = "PARCEL"
     const val KEY_VISITOR = "VISITOR"
