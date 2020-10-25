@@ -3,6 +3,8 @@ package com.rokkhi.receptionistofficeapp.ui.splash
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.firebase.ui.auth.AuthUI
@@ -36,7 +38,16 @@ class SplashActivity : BaseActivity<SplashActivityBinding>() {
 
         mAuthListener = AuthStateListener {
             if (it.currentUser == null) goSignPage()
-            else ScreenNavigator.navigateMainActivity(activityContext)
+            else {
+
+                Handler(Looper.getMainLooper()).postDelayed({
+
+                    ScreenNavigator.navigateMainActivity(activityContext)
+                    finish()
+                }, 3000)
+
+
+            }
         }
 
     }
