@@ -125,7 +125,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/userNameTextField"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        style="@style/LoginTextInputLayoutStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint=" নাম">
@@ -160,7 +160,7 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/mobileNumberTextField"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            style="@style/LoginTextInputLayoutStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=" মোবাইল নাম্বার">
@@ -195,7 +195,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/puposeETTextField"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        style="@style/LoginTextInputLayoutStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="উদ্দেশ্য">
@@ -230,7 +230,7 @@
                     <com.google.android.material.textfield.TextInputLayout
 
                         android:id="@+id/employeelayout"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        style="@style/LoginTextInputLayoutStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="কার কাছে আসছে ">
@@ -262,7 +262,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/addressETTextField"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        style="@style/LoginTextInputLayoutStyle"
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

@@ -127,15 +127,17 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/userNameTextField"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        style="@style/LoginTextInputLayoutStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:hintTextColor="@color/black"
                         android:hint=" পার্সেল নাম">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/parcel_nameET"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_52sdp"
+                            android:textColorHint="@color/black"
                             android:inputType="textNoSuggestions"
                             android:paddingStart="10dp"
                             android:paddingEnd="1dp"
@@ -162,7 +164,7 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/mobileNumberTextField"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            style="@style/LoginTextInputLayoutStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint=" কম্পানি নাম ">
@@ -196,7 +198,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/puposeETTextField"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        style="@style/LoginTextInputLayoutStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="কার নিকট যাবে">
