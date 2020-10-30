@@ -159,14 +159,14 @@ class VisitorInActivity : BaseActivity<ActivityVisitorInBinding>(), IPickResult,
         AndroidNetworking.upload(KeyFrame.imageUploadURL)
             .addMultipartFile("image", file) // posting any type of file
             .addMultipartParameter("folderName", "Visitor")
-            .addMultipartParameter("subFolderName", "CompanyName")//TODO company name bosbe
+            .addMultipartParameter("subFolderName", sharedPrefHelper.getString(KeyFrame.COMPANY_ID))
             .addMultipartParameter("fileName", System.currentTimeMillis().toString())
             .setPriority(Priority.MEDIUM)
             .build()
             .getAsJSONObject(object : JSONObjectRequestListener {
                 override fun onResponse(response: JSONObject) {
                     try {
-                        val imageDownloadLink = response.getString("url")
+                        val imageDownloadLink = response.getString("data")
                         logThis(imageDownloadLink)
                         callApiToUploadData(imageDownloadLink)
 

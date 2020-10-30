@@ -36,7 +36,6 @@ class AttendanceInRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
     }
     fun recordEmployeeAttendanceIn(requesterProfileId: Int, limit: String, pageId: String, companyId: Int,
                                      employeeId: String,
-                                     departmentId: String,
                                      branchId: String,
                                      receptionistId: String,
                                      acknowledgedBy: String,
@@ -49,7 +48,7 @@ class AttendanceInRepo @Inject constructor(@RokkhiApiUrl var api: RokkhiApi) {
         map["companyId"] =companyId
         map["employeeId"] =employeeId
         map["branchId"] =branchId
-        map["departmentId"] =departmentId
+
         map["receptionistId"] =receptionistId
         map["acknowledgedBy"] =acknowledgedBy
         map["status"] =status

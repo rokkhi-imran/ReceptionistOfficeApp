@@ -66,8 +66,7 @@ class AttendanceOutActivity : BaseActivity<ActivityAttendanceOutBinding>(), Adap
                 pageId = "",
                 companyId = sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(),
                 employeeId = employeeData.id.toString(),
-                departmentId = employeeData.department.id.toString(),
-                branchId = employeeData.branch.id.toString(),
+                branchId = sharedPrefHelper.getString(KeyFrame.BRANCH_ID),
                 receptionistId = "",//Receptionist EmployeeID
                 acknowledgedBy = employeeData.id.toString(),
                 status = KeyFrame.KEY_OUTSIDE,

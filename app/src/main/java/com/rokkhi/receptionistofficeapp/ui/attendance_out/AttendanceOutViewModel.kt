@@ -20,7 +20,6 @@ class AttendanceOutViewModel @Inject constructor(private var repo: AttendanceOut
 
     fun recordEmployeeAttendanceOut(requesterProfileId: Int, limit: String, pageId: String, companyId: Int,
                                      employeeId: String,
-                                     departmentId: String,
                                      branchId: String,
                                      receptionistId: String,
                                      acknowledgedBy: String,
@@ -28,7 +27,6 @@ class AttendanceOutViewModel @Inject constructor(private var repo: AttendanceOut
                                      associatedLoggedinDeviceId: String): LiveData<ApiResponse<EmployeeEntryChangeResponse>> = repo.recordEmployeeAttendanceOut(
         requesterProfileId, limit, pageId, companyId,
         employeeId,
-        departmentId,
         branchId,
         receptionistId,
         acknowledgedBy,

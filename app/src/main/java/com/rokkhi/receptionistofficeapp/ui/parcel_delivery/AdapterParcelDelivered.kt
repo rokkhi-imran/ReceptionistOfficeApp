@@ -34,14 +34,13 @@ class AdapterParcelDelivered : RecyclerView.Adapter<AdapterParcelDelivered.ViewH
                can directly altered or re-init will change effect.
             */
             binding.root.setOnClickListener { listener?.onItemClick(mArray[adapterPosition]) }
-            binding.btnStatus.setOnClickListener { listener?.onButtonClick(mArray[adapterPosition]) }
         }
     }
 
 
     interface OnAdapterItemClickListener {
         fun onItemClick(parcelsData: GetParcelsData)
-        fun onButtonClick(parcelsData: GetParcelsData)
+
     }
 
 }

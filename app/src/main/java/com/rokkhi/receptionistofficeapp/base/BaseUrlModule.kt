@@ -10,5 +10,5 @@ class BaseUrlModule {
     @Singleton
     @Provides
     @RokkhiApiUrl
-    fun provideBaseUrl():String = "http://13.76.190.212:3000/"
+    fun provideBaseUrl():String = "https://kolig.api.rokkhi.com/"
 }

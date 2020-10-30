@@ -1,6 +1,7 @@
 package com.rokkhi.receptionistofficeapp.ui.parcel_delivery
 
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,15 +30,25 @@ class ParcelDeliveredActivity : BaseActivity<ActivityParcelListBinding>(), Adapt
 
     //these are click listener as example/test [adapter interface]
     override fun onItemClick(parcelsData: GetParcelsData) {
-        showMessage("item clicked on titleImageURL\n${parcelsData.image}")
+
+        val builder = simpleAlertDialogBuilder("Delivery Alert !", "Are send this Parcel to user ?", true)
+        builder.setPositiveButton("Yes") { dialog, _ ->
+
+            markAsDeliveredParcel(parcelsData)
+
+        }
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
+
+
     }
 
-    //these are click listener as example/test [adapter interface]
-    override fun onButtonClick(parcelsData: GetParcelsData) {
 
-        markAsDeliveredParcel(parcelsData)
+    private fun simpleAlertDialogBuilder(title: String, body: String, cancelable: Boolean): AlertDialog.Builder = AlertDialog.Builder(activityContext!!).setTitle(title).setMessage(body).setCancelable(cancelable)
 
-    }
+
 
     private fun markAsDeliveredParcel(parcelsData: GetParcelsData) {
 

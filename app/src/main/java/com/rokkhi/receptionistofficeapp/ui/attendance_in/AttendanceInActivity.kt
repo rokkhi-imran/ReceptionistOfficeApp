@@ -60,8 +60,7 @@ class AttendanceInActivity : BaseActivity<ActivityAttendanceBinding>(), AdapterE
                 pageId = "",
                 sharedPrefHelper.getString(KeyFrame.COMPANY_ID).toInt(),
                 employeeId = employeeData.id.toString(),
-                departmentId = employeeData.department.id.toString(),
-                branchId = employeeData.branch.id.toString(),
+                branchId = sharedPrefHelper.getString(KeyFrame.BRANCH_ID),
                 receptionistId = "",//Receptionist EmployeeID
                 employeeData.id.toString(),
                 status = KeyFrame.KEY_INSIDE,

@@ -44,14 +44,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
     private void handleNow(RemoteMessage remoteMessage) {
-        String click_Action = "";
-
-        if (remoteMessage.getNotification().getClickAction() != null)
-            click_Action = remoteMessage.getNotification().getClickAction();
-
-
-
-
 
         String messageTitle = remoteMessage.getNotification().getTitle();
         String messageBody = remoteMessage.getNotification().getBody();

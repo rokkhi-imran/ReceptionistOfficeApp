@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_22sdp"
                 android:gravity="start|center"
-                android:text='@{"Name: "+data.phone}'
+                android:text='@{"Phone: "+data.phone}'
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintBottom_toBottomOf="@id/ivParcel"
                 app:layout_constraintEnd_toEndOf="parent"

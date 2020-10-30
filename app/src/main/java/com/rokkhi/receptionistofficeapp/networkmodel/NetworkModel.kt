@@ -177,8 +177,75 @@ data class ParcelReceivedData(val address: String, val contact: String, val crea
 data class UploadSingleImageResponse(@SerializedName("data") val imageDownloadURL: String, val message: String, val path: String, val status: String, val statusCode: Int, val timestamp: String) : Serializable
 
 // record employee entry
+/*
 data class EmployeeEntryChangeResponse(val `data`: EmployeeEntryChangeData, val status: String, val statusCode: Int) : Serializable
 data class EmployeeEntryChangeData(val address: String, val authorizedBy: Int, val branch: Int, val company: Int, val contact: String, val createdDate: String, val deletedDate: Any, val department: Int, val email: String, val exitTime: Any, val id: Int, val image: String, val inTime: String, val name: String, val purpose: String, val receivedBy: Int, val status: String, val thumbImage: String, val type: String, val updatedDate: String) : Serializable
+*/
+data class EmployeeEntryChangeResponse(
+    val data: EmployeeEntryChangeData,
+    val status: String,
+    val statusCode: Int
+)
+
+data class EmployeeEntryChangeData(
+    val address: String,
+    val associatedEmployee: String,
+    val associatedLoggedinDevice: EmployeeEntryChangeAssociatedLoggedinDevice,
+    val authorizedBy: String,
+    val branch: String,
+    val company: Int,
+    val contact: String,
+    val createdDate: String,
+    val deletedDate: Any,
+    val department: EmployeeEntryChangeDepartment,
+    val email: String,
+    val exitTime: Any,
+    val id: Int,
+    val image: String,
+    val inTime: String,
+    val name: String,
+    val purpose: String,
+    val status: String,
+    val thumbImage: String,
+    val type: String,
+    val updatedDate: String
+)
+
+data class EmployeeEntryChangeAssociatedLoggedinDevice(
+    val address: String,
+    val age: Int,
+    val branchId: Int,
+    val companyId: Int,
+    val contactPersonName: String,
+    val contactPersonPhone: String,
+    val createdDate: String,
+    val deletedDate: Any,
+    val departmentId: Int,
+    val email: String,
+    val firebaseId: String,
+    val gender: String,
+    val id: Int,
+    val image: String,
+    val isActive: Boolean,
+    val name: String,
+    val nid: String,
+    val password: String,
+    val phone: String,
+    val primaryRoleCode: String,
+    val thumbImage: String,
+    val updatedDate: String
+)
+
+data class EmployeeEntryChangeDepartment(
+    val createdDate: String,
+    val deletedDate: Any,
+    val description: String,
+    val id: Int,
+    val name: String,
+    val updatedDate: String
+)
+
+
 
 /*
 
