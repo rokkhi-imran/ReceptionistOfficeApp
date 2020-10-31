@@ -64,12 +64,14 @@
                     android:id="@+id/searchlayout"
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:hint=" নাম অথবা ফ্লাট নাম্বার দিয়ে খুঁজুন  ">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/search"
                         android:layout_width="match_parent"
+
                         android:layout_height="@dimen/_50sdp"
                         android:drawableEnd="@drawable/ic_search"
                         android:paddingEnd="20dp"
