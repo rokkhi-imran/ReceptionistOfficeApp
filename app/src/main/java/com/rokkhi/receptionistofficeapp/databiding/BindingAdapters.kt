@@ -21,14 +21,6 @@ object BindingAdapters {
             Picasso.get().load(imageUrl).placeholder(R.drawable.user_avatar).centerCrop().resize(300, 300).into(view)
         }
     }
-    @JvmStatic
-    @BindingAdapter("loadImage")
-    fun loadPracelImage(view: ImageView, imageUrl: String) {
-        if (imageUrl.isNotEmpty() && imageUrl.startsWith("http")) {
-            Timber.e("leadingImageURL: $imageUrl into viewID: ${view.id} ")
-            Picasso.get().load(imageUrl).error(R.drawable.parcel_icon).placeholder(R.drawable.parcel_icon).centerCrop().resize(300, 300).into(view)
-        }
-    }
 
     @JvmStatic
     @BindingAdapter("convertDateDMY")
